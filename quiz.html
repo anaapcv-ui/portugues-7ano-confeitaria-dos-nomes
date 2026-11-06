@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · Confeitaria dos Nomes · Português 7º</title>
+<style>
+  :root{--palco:#1a1013;--palco2:#2a1a1f;--aco:#4a2e37;--aco2:#6b4552;--ambar:#ffb84d;--ciano:#ff8fb8;--terra:#b99cff;--verde:#5fe3c0;--vermelho:#ef5b5b;--texto:#fbeee6;--cinza:#c9aeb2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#3b1e27,#1a1013 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#2a1240,#5a2a0c 55%,#2e1820);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--terra)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#d7ebfa;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#eadde0;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--ciano);color:#3a0d20;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ciano);font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#122a1f,#1b4d36);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--ambar),var(--ciano),var(--terra));width:0;transition:width .3s}
+  .q{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--ciano);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema{float:right;font-size:.7rem;color:var(--cinza);background:var(--palco);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .alt{display:block;background:#221519;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--ciano)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--ciano);background:#12283a}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#555;background:#1e1c22;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#221519;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--ciano);color:#3a0d20;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#3a262c;color:#9a7f86;cursor:not-allowed}
+  .gab{background:var(--palco2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#150c0f;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ciano);color:#3a0d20;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .trilha-fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#3a262c;color:#9a7f86;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ciano);color:#3a0d20;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+  h1,h2,h3{font-family:'Trebuchet MS','Segoe UI',system-ui,sans-serif;letter-spacing:.2px}
+  .fita{height:14px;background-color:#1a1013;background-image:radial-gradient(circle,#ff8fb8 2px,transparent 2.6px),radial-gradient(circle,#ffb84d 2px,transparent 2.6px),radial-gradient(circle,#5fe3c0 2px,transparent 2.6px),radial-gradient(circle,#b99cff 2px,transparent 2.6px);background-size:28px 14px;background-position:0 2px,7px 8px,14px 3px,21px 9px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Confeitaria dos Nomes · Português 7º ano · CCF</div>
+  <h1>🎯 Quiz — Prova de Sabor</h1>
+  <p>18 questões · Cap. 20, 21 e 22 · Código MED para os pais</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a class="on" href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>👩‍🍳 Hora da prova de sabor!</h2>
+    <p>Responda as <b>18 questões</b> (todas obrigatórias). Depois de <b>Enviar</b>, as respostas travam, sai o seu <b>código MED</b> e o gabarito comentado abre com o código. Ao enviar, o <b>🗺️ Resumo destrava</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar respostas (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código MED que apareceu no topo.<br>
+    <input id="gab-in" placeholder="MED-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Resumo</h3>
+    <p id="trilha-fim-txt">O Resumo destrava quando você enviar o Quiz.</p>
+    <a class="btn off" id="btn-prox" href="resumo.html">🗺️ Ir para o Resumo</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🍰🧁🔔 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Quiz, conclua a Leitura Guiada.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='confeitaria_p7m3';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('quiz')) return true;
+  var L=lerJSON(KIT+'_leitura_v1'); var p=(L&&L.progresso)||{conferidos:0,total:11,chkPendentes:0};
+  var faltam=p.total-p.conferidos;
+  var txt= faltam>0 ? 'Para abrir o Quiz, conclua a Leitura Guiada: faltam '+faltam+' de '+p.total+' fornadas.' : 'Para abrir o Quiz, responda a autoavaliação Sim/Não da Leitura Guiada ('+p.chkPendentes+' ponto(s) pendente(s)).';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== QUESTÕES (Callis Língua Portuguesa 7 L2: Cap. 20, 21 e 22) — a correta é guardada pelo id ====== */
+var Q=[
+ {
+  "tema": "Cap. 20 · Adjunto adnominal",
+  "p": "Segundo o livro, o adjunto adnominal é o termo que:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "especifica ou delimita o significado de um substantivo.",
+    "e": "É a definição do livro (p. 82).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "modifica o sentido de um verbo, indicando tempo, lugar ou modo.",
+    "e": "Isso é o adjunto adverbial: ele se liga ao verbo, não ao nome."
+   },
+   {
+    "id": "c",
+    "t": "serve para chamar a pessoa com quem se fala.",
+    "e": "Isso é o vocativo (Cap. 21)."
+   },
+   {
+    "id": "d",
+    "t": "anexa uma informação que explica outro termo, isolada por vírgulas.",
+    "e": "Isso é o aposto (Cap. 22)."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 20 · Tipos de adjunto",
+  "p": "Em “Três quilômetros separam uma praça da outra”, a palavra “Três” é um adjunto adnominal do tipo:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "numeral.",
+    "e": "Correto: “três” é numeral e acompanha o substantivo “quilômetros” (exemplo do livro, p. 82).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "artigo.",
+    "e": "Artigos são palavras como “o, a, um, uma”."
+   },
+   {
+    "id": "c",
+    "t": "pronome adjetivo.",
+    "e": "No livro, o exemplo de pronome adjetivo é “Essa praça”."
+   },
+   {
+    "id": "d",
+    "t": "locução adjetiva.",
+    "e": "Locução adjetiva é uma expressão, como “de estudo” em “bolsas de estudo”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 20 · No sujeito",
+  "p": "Em “A grande metrópole precisa de soluções sustentáveis”, os adjuntos adnominais do núcleo do sujeito são:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“A” e “grande”.",
+    "e": "Correto: o núcleo é “metrópole”; o artigo “a” e o adjetivo “grande” o caracterizam (p. 83).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "“metrópole” e “grande”.",
+    "e": "“Metrópole” é o núcleo do sujeito, não um adjunto."
+   },
+   {
+    "id": "c",
+    "t": "“soluções” e “sustentáveis”.",
+    "e": "Essas palavras estão no predicado, não no sujeito."
+   },
+   {
+    "id": "d",
+    "t": "apenas “sustentáveis”.",
+    "e": "“Sustentáveis” caracteriza “soluções”, que está no predicado."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 20 · Adjunto × predicativo",
+  "p": "Em “Aquela cidade é sustentável”, a palavra “sustentável” exerce a função de:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "predicativo do sujeito.",
+    "e": "Correto: está no predicado, depois do verbo “é”; sem ela, a oração fica incompleta (p. 84).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "adjunto adnominal.",
+    "e": "Seria adjunto adnominal se estivesse colada ao substantivo dentro do sujeito, como em “Uma cidade sustentável traz…”."
+   },
+   {
+    "id": "c",
+    "t": "aposto.",
+    "e": "Não há informação isolada por vírgulas explicando “cidade”."
+   },
+   {
+    "id": "d",
+    "t": "vocativo.",
+    "e": "Ninguém está sendo chamado na frase."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 20 · Predicativo do objeto",
+  "p": "Em qual frase o termo em MAIÚSCULAS é PREDICATIVO DO OBJETO?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "O prefeito considerou a obra IMPORTANTE.",
+    "e": "Correto: “importante” depende do julgamento do prefeito (verbo “considerou”) — predicativo do objeto (p. 84).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "O prefeito iniciou a obra IMPORTANTE.",
+    "e": "Aqui “importante” é característica da própria obra: adjunto adnominal."
+   },
+   {
+    "id": "c",
+    "t": "Encontramos o livro DE CIÊNCIAS no fundo da prateleira.",
+    "e": "“De Ciências” é característica própria do livro: adjunto adnominal."
+   },
+   {
+    "id": "d",
+    "t": "Visitei a cidade SUSTENTÁVEL paranaense.",
+    "e": "“Sustentável” acompanha “cidade” dentro do objeto: adjunto adnominal."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 20 · Adjunto × complemento nominal",
+  "p": "Em “O apoio aos moradores é essencial”, a expressão “aos moradores” é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "complemento nominal, pois os moradores são o alvo: eles recebem o apoio.",
+    "e": "Correto: alvo da ação implícita no substantivo abstrato = complemento nominal (pp. 84 e 86).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "adjunto adnominal, pois os moradores são os agentes do apoio.",
+    "e": "Agente seria em “O apoio DOS moradores” (eles apoiam)."
+   },
+   {
+    "id": "c",
+    "t": "vocativo, pois chama os moradores.",
+    "e": "Ninguém está sendo chamado; a expressão completa o nome “apoio”."
+   },
+   {
+    "id": "d",
+    "t": "aposto, pois explica a palavra “apoio”.",
+    "e": "Não há explicação isolada por vírgulas; “aos moradores” completa o sentido de “apoio”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Verbo vir",
+  "p": "Assinale a frase em que a conjugação do verbo “vir” NÃO atende às regras da gramática:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Puxa! Seus sapatos vem com rodinha?",
+    "e": "Correto (é a frase errada): o sujeito “seus sapatos” está no plural, então o certo é “vêm” (p. 101).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Os garotos vêm para o ensaio às 13h.",
+    "e": "Está certa: sujeito no plural → “vêm”."
+   },
+   {
+    "id": "c",
+    "t": "Você vem para a reunião?",
+    "e": "Está certa: “você” é 3ª pessoa do singular → “vem”."
+   },
+   {
+    "id": "d",
+    "t": "Não falei que os doces já vêm personalizados?",
+    "e": "Está certa: “os doces” (plural) → “vêm”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Derivados de vir",
+  "p": "Passando “Ele provém” para o plural, obtemos:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Eles provêm.",
+    "e": "Correto: nos derivados de “vir”, o plural leva acento circunflexo (p. 100).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Eles provém.",
+    "e": "O acento agudo é do singular (ele provém)."
+   },
+   {
+    "id": "c",
+    "t": "Eles provem.",
+    "e": "Falta o acento circunflexo que marca o plural de “provir”."
+   },
+   {
+    "id": "d",
+    "t": "Ele provêm.",
+    "e": "O sujeito continua no singular, e o circunflexo é só do plural."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Verbo vir",
+  "p": "Em “O conto maravilhoso vem de países orientais” e “Os contos de fadas, em sua maioria, vêm da cultura celta”, o que explica o acento em “vêm”?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "O sujeito “os contos de fadas” está na 3ª pessoa do plural.",
+    "e": "Correto: no presente do indicativo, só o acento diferencia a 3ª pessoa do singular (vem) da do plural (vêm).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "O verbo está no passado.",
+    "e": "As duas formas estão no presente do indicativo."
+   },
+   {
+    "id": "c",
+    "t": "O acento serve para dar ênfase à frase.",
+    "e": "O acento marca o plural, não ênfase."
+   },
+   {
+    "id": "d",
+    "t": "“Vêm” é usado quando o sujeito vem depois do verbo.",
+    "e": "O que importa é o número do sujeito (singular ou plural), não a posição dele."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Vocativo",
+  "p": "Segundo o livro, o vocativo serve para:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "invocar, chamar e dirigir-se a uma pessoa ou a outro ser personificado.",
+    "e": "É a definição do livro (p. 104).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "esclarecer, desenvolver ou resumir a palavra a que se refere.",
+    "e": "Isso é o aposto."
+   },
+   {
+    "id": "c",
+    "t": "especificar ou delimitar o sentido de um substantivo.",
+    "e": "Isso é o adjunto adnominal."
+   },
+   {
+    "id": "d",
+    "t": "indicar quem pratica a ação do verbo.",
+    "e": "Isso é o sujeito; o vocativo não pertence ao sujeito nem ao predicado."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Vocativo × sujeito",
+  "p": "Em qual frase o nome em MAIÚSCULAS é VOCATIVO?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "PAULO, vai se encontrar com os amigos na lanchonete hoje?",
+    "e": "Correto: separado por vírgula, “Paulo” é chamado — é com ele que se fala (p. 106).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "PAULO vai se encontrar com os amigos na lanchonete hoje?",
+    "e": "Sem vírgula, “Paulo” é o sujeito: fala-se sobre ele."
+   },
+   {
+    "id": "c",
+    "t": "MARIA pode me ajudar com essa lição de sintaxe?",
+    "e": "Sem vírgula, “Maria” é o sujeito de “pode”."
+   },
+   {
+    "id": "d",
+    "t": "LUCAS E ROGÉRIO estão escalados, treinador?",
+    "e": "“Lucas e Rogério” é o sujeito; o vocativo dessa frase é “treinador”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 21 · Vocativo",
+  "p": "Em “Você quebrou outro copo, papai?”, o vocativo é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "papai.",
+    "e": "Correto: é a pessoa com quem se fala, separada por vírgula no fim da oração (p. 108).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "você.",
+    "e": "“Você” é o sujeito do verbo “quebrou”."
+   },
+   {
+    "id": "c",
+    "t": "outro copo.",
+    "e": "“Outro copo” é o objeto direto de “quebrou”."
+   },
+   {
+    "id": "d",
+    "t": "quebrou.",
+    "e": "“Quebrou” é o verbo (núcleo do predicado)."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · ora × hora",
+  "p": "Complete corretamente: “___ diz que vai embora, ___ que decidiu ficar.”",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Ora… ora",
+    "e": "Correto: “ora… ora” é conjunção alternativa e indica alternância de fatos (pp. 122–123).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Hora… hora",
+    "e": "“Hora” é substantivo (tempo, momento); não indica alternância."
+   },
+   {
+    "id": "c",
+    "t": "Ora… hora",
+    "e": "A conjunção alternativa aparece repetida: “ora… ora”."
+   },
+   {
+    "id": "d",
+    "t": "Hora… ora",
+    "e": "A conjunção alternativa aparece repetida: “ora… ora”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · por ora × por hora",
+  "p": "“Não há mais nada a fazer. ___, basta esperar.” A opção correta e o motivo são:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“Por ora”, porque significa “por enquanto”.",
+    "e": "Correto: por ora = por enquanto (p. 123).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "“Por hora”, porque significa “por enquanto”.",
+    "e": "“Por hora” significa “em um intervalo de 60 minutos”."
+   },
+   {
+    "id": "c",
+    "t": "“Por hora”, porque indica um intervalo de 60 minutos.",
+    "e": "O sentido da frase é “por enquanto”, não “a cada 60 minutos”."
+   },
+   {
+    "id": "d",
+    "t": "“Por ora”, porque “ora” é um substantivo que indica tempo.",
+    "e": "“Ora” é interjeição ou conjunção; quem é substantivo de tempo é “hora”."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · Aposto",
+  "p": "Em “Os convidados, parentes e conhecidos, ficaram chocados com a transformação”, o termo “parentes e conhecidos” é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "aposto, isolado por vírgulas, que esclarece quem eram os convidados.",
+    "e": "Correto: é um dos exemplos do livro (p. 126).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "vocativo, pois chama os parentes e conhecidos.",
+    "e": "Ninguém está sendo chamado; o termo explica “os convidados”."
+   },
+   {
+    "id": "c",
+    "t": "sujeito da oração.",
+    "e": "O sujeito é “Os convidados”; o aposto apenas se refere a ele."
+   },
+   {
+    "id": "d",
+    "t": "adjunto adnominal sem vírgulas.",
+    "e": "O termo está entre vírgulas e explica o substantivo: é aposto."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · Aposto",
+  "p": "Se retirarmos o aposto de “Os súditos, todos fidalgos, formavam o cortejo da princesa”, a oração:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "continua com a estrutura completa: “Os súditos formavam o cortejo da princesa.”",
+    "e": "Correto: o aposto, se excluído, não altera a estrutura sintática (p. 126).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "fica sem sujeito.",
+    "e": "O sujeito “Os súditos” continua na frase."
+   },
+   {
+    "id": "c",
+    "t": "fica sem verbo.",
+    "e": "O verbo “formavam” continua na frase."
+   },
+   {
+    "id": "d",
+    "t": "passa a ter “fidalgos” como sujeito.",
+    "e": "“Todos fidalgos” era o aposto e saiu da frase."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · Tipos de aposto",
+  "p": "Em “Beleza, serenidade e honradez, todas as características de um príncipe se encontravam nele”, o aposto faz uma:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "recapitulação, resumindo os termos citados antes.",
+    "e": "Correto: “todas as características de um príncipe” resume “beleza, serenidade e honradez” (p. 127).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "enumeração, listando os termos depois.",
+    "e": "Enumeração é o caso de “…características de um príncipe: beleza, serenidade e honradez.”"
+   },
+   {
+    "id": "c",
+    "t": "especificação, sem nenhuma pontuação.",
+    "e": "O especificativo não tem pontuação, como em “O escritor Hans Christian Andersen…”."
+   },
+   {
+    "id": "d",
+    "t": "chamada ao interlocutor.",
+    "e": "Chamar o interlocutor é papel do vocativo."
+   }
+  ]
+ },
+ {
+  "tema": "Cap. 22 · Aposto especificativo",
+  "p": "Em “O escritor Hans Christian Andersen escreveu seus próprios contos”, há um aposto especificativo porque “Hans Christian Andersen”:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "individualiza o substantivo genérico “escritor” e não é marcado por pontuação.",
+    "e": "Correto: é a explicação do livro (p. 126).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "está entre vírgulas, explicando quem é o escritor.",
+    "e": "O aposto especificativo NÃO vem entre vírgulas."
+   },
+   {
+    "id": "c",
+    "t": "chama o escritor para a conversa.",
+    "e": "Isso seria vocativo."
+   },
+   {
+    "id": "d",
+    "t": "resume vários escritores citados antes.",
+    "e": "Resumir termos citados antes é recapitulação."
+   }
+  ]
+ }
+]
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(1092);
+Q.forEach(function(q){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; });
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_quiz_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'MED-'+xx+'-'+yy; }
+
+function render(){
+  var c=document.getElementById('questoes'); var h='';
+  Q.forEach(function(q,i){
+    h+='<div class="q" id="q'+i+'"><span class="tema">'+q.tema+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    q.ordem.forEach(function(a,k){
+      var letra='abcd'[k]; var sel=estado.resp[i]===a.id;
+      var cls='alt'+(sel?' sel':'');
+      if(estado.gabarito){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+      h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t;
+      if(estado.gabarito){ h+='<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>'; }
+      h+='</label>';
+    });
+    h+='</div>';
+  });
+  c.innerHTML=h;
+  atualizarBarra();
+  if(estado.enviado){ mostrarEnviado(); }
+  atualizarTrilhaFim();
+}
+function marcar(i,id){ if(estado.enviado) return; estado.resp[i]=id; salvar(); var q=document.getElementById('q'+i); var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===id); } atualizarBarra(); }
+function atualizarBarra(){ var n=Object.keys(estado.resp).length; document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar respostas ('+n+' de '+Q.length+' respondidas)':'📨 Enviar respostas'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ var a=q.alts.filter(function(x){return x.id===estado.resp[i];})[0]; if(a&&a.ok) ac++; });
+  estado.acertos=ac; estado.total=Q.length; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Quiz enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado e o relatório no Início.';
+  document.getElementById('gab').classList.add('show');
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+Q.length+'.</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function atualizarTrilhaFim(){
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox'); var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Quiz enviado — Resumo destravado!'; txt.textContent=estado.concluido?'Agora use o Resumo para fechar as dúvidas que o Quiz mostrou.':'Trilha liberada pelos pais.'; btn.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Resumo'; txt.textContent='Destrava quando você enviar o Quiz.'; btn.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='quiz_confeitaria-dos-nomes.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Quiz? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Quiz já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); } else { marcarNav(); }
+</script>
+</body>
+</html>

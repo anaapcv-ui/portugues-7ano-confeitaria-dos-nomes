@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Confeitaria dos Nomes · Português 7º</title>
+<style>
+  :root{
+    --palco:#1a1013; --palco2:#2a1a1f; --aco:#4a2e37; --aco2:#6b4552;
+    --ambar:#ffb84d; --ciano:#ff8fb8; --terra:#b99cff; --verde:#5fe3c0; --verde2:#2fae8f;
+    --vermelho:#ef5b5b; --texto:#fbeee6; --cinza:#c9aeb2; --postit:#ffe88a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:
+    radial-gradient(1100px 480px at 50% -10%,#3b1e27,#1a1013 60%),var(--palco);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0f3a33,#14524a 55%,#3a1f2c);padding:26px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--verde)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#ffd9e8;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#eadde0;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;
+    border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--verde);color:#04231a;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--verde);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .legenda{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:.8rem}
+  .legenda span{padding:3px 10px;border-radius:12px;font-weight:bold}
+  .lg-c16{background:#3d2a0e;color:var(--ambar)} .lg-c17{background:#3a1530;color:var(--ciano)} .lg-xx{background:#2a1a45;color:var(--terra)}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .mini:hover{background:#3a262c}
+  .bloco{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#3a222a,#40252e);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--ambar);color:#2a1700;font-weight:bold;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.c17 .bloco-cab .num{background:var(--ciano);color:#3a0d20}
+  .bloco.xx .bloco-cab .num{background:var(--terra);color:#1d0f3a}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:5px}
+  .texto .destaque{color:var(--ambar);font-weight:bold}
+  .bloco.c17 .texto .destaque{color:var(--ciano)}
+  .bloco.xx .texto .destaque{color:var(--terra)}
+  .olhar{background:#2a2614;border-left:3px solid var(--postit);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--postit)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#221519;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#4a1a35;color:#ffc2da}
+  .tag.apl{background:#1d4530;color:#a7e0bf}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#150c0f;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3d12;border:1px solid var(--ambar);color:#ffe9ad}
+  .aviso.vermelho{display:block;background:#4a1717;border:1px solid var(--vermelho);color:#ffc9c9}
+  .modelo{margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe0b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#150c0f;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#3a262c;color:#9a7f86;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--verde);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb3b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--verde);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left}
+  th{background:#3a222a}
+  .revisar{background:#3a2e06;border:2px solid var(--ambar);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--ambar);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--palco2);border:1px dashed var(--verde);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--verde);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#3a262c;color:#9a7f86;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--verde);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--verde);color:#04231a;border:none;border-radius:8px;padding:9px 16px;font-weight:bold}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+  h1,h2,h3{font-family:'Trebuchet MS','Segoe UI',system-ui,sans-serif;letter-spacing:.2px}
+  .fita{height:14px;background-color:#1a1013;background-image:radial-gradient(circle,#ff8fb8 2px,transparent 2.6px),radial-gradient(circle,#ffb84d 2px,transparent 2.6px),radial-gradient(circle,#5fe3c0 2px,transparent 2.6px),radial-gradient(circle,#b99cff 2px,transparent 2.6px);background-size:28px 14px;background-position:0 2px,7px 8px,14px 3px,21px 9px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+  .tag.conc{background:#4a1a35;color:#ffc2da}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Confeitaria dos Nomes · Português 7º ano · CCF</div>
+  <h1>📖 Leitura Guiada — As Fornadas da Confeitaria</h1>
+  <p>Avaliação Mensal 3 · Adjunto adnominal, verbo “vir”, vocativo, “ora” e “hora” e aposto · Prova 10/11 · Callis Língua Portuguesa 7 – Livro 2</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🧁 Bem-vindo à cozinha, jovem aprendiz</h2>
+    <p>Nesta confeitaria, o <b>substantivo é o doce</b>: os <b>adjuntos adnominais</b> são as coberturas e os confeitos, o <b>vocativo</b> é o chamado no balcão, <b>vem/vêm</b> são as encomendas, <b>ora/hora</b> é o relógio do forno e o <b>aposto</b> é a etiqueta que explica o doce. Cada bloco é uma <b>Fornada</b> — são <b>11</b>. A próxima fornada só sai do forno quando você conferir a anterior.</p>
+    <ol>
+      <li>Leia a fornada com calma (tudo aqui vem do seu livro).</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b> com as suas palavras (não vale copiar o texto).</li>
+      <li>Clique em <b>Conferir</b>: aparece a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com as 11 fornadas conferidas e a autoavaliação respondida, o <b>🎯 Quiz destrava</b>.</li>
+    </ol>
+    <div class="legenda"><span class="lg-c16">🍰 Capítulo 20 = Adjunto adnominal</span><span class="lg-c17">🔔 Capítulo 21 = Verbo “vir” e vocativo</span><span class="lg-xx">🏷️ Capítulo 22 = “Ora”/“hora” e aposto</span></div>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 10 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+      <li><b>Artigo e pronome também são adjuntos adnominais!</b> Em “<b>A</b> cidade…” e “<b>Essa</b> praça…”, as palavras pequenas delimitam o substantivo. Não procure só adjetivos.</li>
+      <li><b>Adjunto adnominal mora em qualquer lugar:</b> no sujeito (“A <b>grande</b> metrópole…”) e no predicado (“…práticas <b>sustentáveis</b>…”). Qualquer nome pode receber um.</li>
+      <li><b>Adjunto adnominal × adjunto adverbial:</b> o adnominal acompanha um <b>nome</b>; o adverbial modifica o <b>verbo</b>. Em “implementa práticas sustentáveis diariamente”, “diariamente” é adverbial.</li>
+      <li><b>Mesma palavra, outra função:</b> “Uma cidade <b>sustentável</b> traz…” (adjunto adnominal) × “Aquela cidade é <b>sustentável</b>.” (predicativo do sujeito).</li>
+      <li><b>Predicativo do objeto × adjunto adnominal:</b> “O prefeito <b>considerou</b> a obra importante” (opinião = PO) × “O prefeito <b>iniciou</b> a obra importante” (característica da obra = AA).</li>
+      <li><b>Substantivo abstrato:</b> quem FAZ a ação = adjunto adnominal (“o apoio <b>dos</b> moradores”); quem RECEBE = complemento nominal (“o apoio <b>aos</b> moradores”).</li>
+      <li><b>vem × vêm:</b> singular sem acento, plural com circunflexo. Nos derivados, singular com <b>agudo</b> (intervém) e plural com <b>circunflexo</b> (intervêm). “Seus sapatos <b>vem</b> com rodinha?” está ERRADO: o certo é “vêm”.</li>
+      <li><b>Com vírgula ou sem?</b> “Maria<b>,</b> pode me ajudar…?” (vocativo: falo COM Maria) × “Maria pode me ajudar…?” (sujeito: falo SOBRE Maria).</li>
+      <li><b>Vocativo × aposto:</b> o vocativo CHAMA alguém (“…ó nômade formosa!”) e fica fora do sujeito e do predicado; o aposto EXPLICA um termo da oração (“José de Alencar, <b>romancista brasileiro</b>, nasceu no Ceará”).</li>
+      <li><b>ora × hora:</b> “ora” é interjeição ou conjunção (ora… ora); “hora” é substantivo (tempo, momento). <b>Por ora</b> = por enquanto; <b>por hora</b> = a cada 60 minutos. E o aposto <b>especificativo</b> não tem vírgula (“O escritor Hans Christian Andersen…”).</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Fornada</h3>
+    <table>
+      <thead><tr><th>Tópico da prova</th><th>Páginas (Callis Língua Portuguesa 7 – L2)</th><th>Fornada</th></tr></thead>
+      <tbody>
+        <tr><td>Adjunto adnominal: definição, termo acessório, título da pia e dos “telhados verdes”, Síntese</td><td>82–83, 87</td><td>1</td></tr>
+        <tr><td>Quem pode ser adjunto adnominal: adjetivo, locução adjetiva, artigo, pronome adjetivo, numeral, oração</td><td>82, 87</td><td>2</td></tr>
+        <tr><td>Adjunto adnominal no sujeito e no predicado; núcleo; adjunto adnominal × adjunto adverbial</td><td>82–83</td><td>3</td></tr>
+        <tr><td>Adjunto adnominal × predicativo do sujeito × predicativo do objeto</td><td>84, 86</td><td>4</td></tr>
+        <tr><td>Adjunto adnominal × complemento nominal (agente × alvo)</td><td>84, 86</td><td>5</td></tr>
+        <tr><td>Uso do verbo “vir”: vem/vêm e derivados (intervém/intervêm, provém/provêm, advém/advêm, sobrevém/sobrevêm)</td><td>100–101</td><td>6</td></tr>
+        <tr><td>Vocativo: definição, origem da palavra, termo isolado, vírgulas, posição, interjeição</td><td>104–105</td><td>7</td></tr>
+        <tr><td>Vocativo × sujeito; ênfase (repetição e interjeição); importância nos diálogos; poema “Seu lobo”; Síntese</td><td>106–109</td><td>8</td></tr>
+        <tr><td>Uso de “ora” e “hora”; por ora × por hora; ora… ora × ou… ou</td><td>122–123</td><td>9</td></tr>
+        <tr><td>Aposto: definição, pontuação, termos a que se refere, importância para o sentido</td><td>124–127</td><td>10</td></tr>
+        <tr><td>Tipos de aposto (enumeração, recapitulação, explicação, especificação); aposto antes do termo; expressões explicativas; Síntese</td><td>126–131</td><td>11</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o aprendiz for conferindo as fornadas, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando as 11 fornadas estiverem conferidas e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🍰🧁🔔 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='confeitaria_p7m3';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== FORNADAS (conteúdo do livro Callis Língua Portuguesa 7 L2 — Cap. 20, 21 e 22) ====== */
+var BLOCOS = [
+ {
+  "porto": "Fornada 1 · Capítulo 20 · pp. 82–83 e 87",
+  "emoji": "🍰",
+  "u": "c16",
+  "titulo": "Adjunto adnominal: a cobertura do substantivo",
+  "texto": [
+   "Você já viu que os verbos podem ganhar <b>adjuntos adverbiais</b>, que modificam o sentido deles. Os nomes também ganham os seus “enfeites”: é o <span class='destaque'>adjunto adnominal</span>. O livro define assim: é o termo que <b>especifica ou delimita o significado de um substantivo</b>. Na nossa confeitaria, o substantivo é o doce, e o adjunto adnominal é a cobertura que diz exatamente qual doce é aquele.",
+   "O capítulo começa com um título de notícia: <i>“Designer cria pia que utiliza água desperdiçada para regar planta”</i>. Os três verbos (cria, utiliza, regar) têm objetos — pia, água e planta —, mas só um deles ganhou caracterização: a água é <b>desperdiçada</b>. É essa palavra que mostra a novidade da invenção.",
+   "O adjunto adnominal é um <span class='destaque'>termo acessório</span>: a oração continua com a estrutura completa sem ele. Mas o livro avisa que acessório <b>não quer dizer totalmente dispensável</b>. No título <i>“Cidades investem em construção de ‘telhados verdes’”</i>, a palavra “verdes” caracteriza “telhados”; sem ela, sobraria “construir telhados”, uma atividade comum que nem viraria notícia.",
+   "<div class='olhar'><b>Síntese do livro (p. 87):</b> o adjunto adnominal delimita ou especifica o sentido de um substantivo; pode estar relacionado a qualquer termo da oração; não interfere na estrutura da oração, mas pode alterar o sentido dela.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras: para que serve um adjunto adnominal? E por que ele é “acessório”, mas não “totalmente dispensável”?",
+    "modelo": "Ele serve para caracterizar, especificar ou delimitar o sentido de um substantivo. É acessório porque a oração continua completa sem ele; mas não é dispensável porque, sem ele, o sentido pode mudar ou ficar pobre (como em “telhados verdes”).",
+    "chk": [
+     "Disse que ele caracteriza/especifica um substantivo (um nome)?",
+     "Expliquei que a oração fica completa sem ele, mas o sentido muda?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Reescreva esta frase do livro acrescentando pelo menos DOIS adjuntos adnominais. Depois, escreva entre parênteses a quais substantivos eles se ligam: “O prefeito sancionou uma lei ontem.”",
+    "modelo": "Resposta pessoal. Vale qualquer frase em que as palavras novas fiquem junto de “prefeito” e/ou de “lei”, caracterizando esses substantivos (um adjetivo, uma expressão com “de”, um pronome como “nosso”, um numeral…). Atenção: “ontem” já estava na frase e é adjunto adverbial (liga-se ao verbo), não conta.",
+    "chk": [
+     "Acrescentei pelo menos duas palavras/expressões que caracterizam um substantivo?",
+     "Elas estão ligadas a “prefeito” ou “lei” (e não ao verbo)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique para um colega mais novo, como se estivesse numa confeitaria, a diferença entre “a oração fica completa sem o adjunto adnominal” e “o sentido fica igual sem ele”.",
+    "modelo": "A estrutura fica completa: a frase continua tendo sujeito e predicado, como um bolo que continua sendo bolo sem cobertura. Mas o sentido muda: sem a cobertura não dá para saber qual bolo é — sem o adjunto adnominal a informação fica menos exata.",
+    "chk": [
+     "Disse que a estrutura (sujeito e predicado) continua completa?",
+     "Disse que o sentido/a informação muda ou fica menos exata?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 2 · Capítulo 20 · p. 82",
+  "emoji": "🧁",
+  "u": "c16",
+  "titulo": "Os seis confeitos: quem pode ser adjunto adnominal",
+  "texto": [
+   "Segundo o livro, a função de adjunto adnominal pode ser desempenhada por <b>seis tipos</b> de palavra ou expressão. Todos têm uma coisa em comum: ficam junto de um substantivo e o caracterizam. Veja os exemplos do próprio livro (o adjunto está em negrito):",
+   "<ul><li><span class='destaque'>adjetivo</span>: A cidade receberá equipamentos de vigilância <b>eletrônica</b>.</li><li><span class='destaque'>locução adjetiva</span>: Os alunos receberão bolsas <b>de estudo</b> para línguas estrangeiras.</li><li><span class='destaque'>artigo</span>: <b>A</b> cidade superou as expectativas de todos.</li><li><span class='destaque'>pronome adjetivo</span>: <b>Essa</b> praça está sendo reformada desde quando?</li><li><span class='destaque'>numeral</span>: <b>Três</b> quilômetros separam uma praça da outra.</li><li><span class='destaque'>outra oração inteira</span>: As cidades grandes <b>que não investem em sustentabilidade</b> comprometem a qualidade de vida dos moradores.</li></ul>",
+   "Repare que até palavras pequeninas, como o artigo <b>“a”</b> e o pronome <b>“essa”</b>, são adjuntos adnominais: elas também delimitam o substantivo. E a <b>locução adjetiva</b> é uma expressão (no exemplo, “de estudo”) que caracteriza o substantivo como faria um adjetivo.",
+   "Já a <b>oração</b> é o confeito maior: um trecho inteiro, com verbo, que caracteriza o substantivo. No exemplo, não são todas as cidades grandes, e sim as que não investem em sustentabilidade."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Quais são os seis tipos de palavra ou expressão que, segundo o livro, podem ser adjunto adnominal?",
+    "modelo": "Adjetivo, locução adjetiva, artigo, pronome adjetivo, numeral e uma oração inteira.",
+    "chk": [
+     "Lembrei pelo menos cinco dos seis tipos?",
+     "Incluí o artigo e o numeral (os mais esquecidos)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Nesta frase de um exercício do livro, escreva os adjuntos adnominais e diga o tipo de cada um: “As grandes cidades modernas adotam políticas inovadoras de sustentabilidade urbana.”",
+    "modelo": "Ligados a “cidades”: As (artigo), grandes (adjetivo), modernas (adjetivo). Ligados a “políticas”: inovadoras (adjetivo) e de sustentabilidade (locução adjetiva). Ligado a “sustentabilidade”: urbana (adjetivo).",
+    "chk": [
+     "Achei “As”, “grandes” e “modernas” ligados a “cidades”?",
+     "Achei “inovadoras” e “de sustentabilidade” ligados a “políticas”?",
+     "Dei o tipo certo (artigo, adjetivo, locução adjetiva)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Crie uma frase sobre uma confeitaria em que apareçam um NUMERAL e um PRONOME ADJETIVO funcionando como adjuntos adnominais. Depois, diga qual é cada um.",
+    "modelo": "Resposta pessoal. Confira: o numeral (uma quantidade) está colado a um substantivo; o pronome (como essa, aquela, meu, nosso, seu) também está colado a um substantivo, delimitando-o. Os dois precisam acompanhar nomes, não verbos.",
+    "chk": [
+     "Usei um numeral junto de um substantivo?",
+     "Usei um pronome (essa, aquela, meu, nosso…) junto de um substantivo?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 3 · Capítulo 20 · pp. 82–83",
+  "emoji": "🎂",
+  "u": "c16",
+  "titulo": "Achando o doce: o adjunto no sujeito e no predicado",
+  "texto": [
+   "O adjunto adnominal pode acompanhar nomes que estejam em <b>qualquer lugar da oração</b>: tanto no <span class='destaque'>sujeito</span> quanto no <span class='destaque'>predicado</span>. O segredo para encontrá-lo é achar primeiro o <b>núcleo</b> (a palavra principal) e ver o que “sobra” em volta dele, caracterizando-o.",
+   "<b>No sujeito:</b> em <i>“A grande metrópole precisa de soluções sustentáveis”</i>, o sujeito é “A grande metrópole” e o núcleo é <b>metrópole</b>. Tudo o que sobra dentro do sujeito e caracteriza esse núcleo — o artigo “a” e o adjetivo “grande” — é adjunto adnominal.",
+   "<b>No predicado:</b> em <i>“A cidade implementa práticas sustentáveis diariamente”</i>, o núcleo do predicado é o verbo <b>implementa</b> (transitivo direto). O objeto direto é “práticas sustentáveis”, com núcleo <b>práticas</b>. O adjetivo “sustentáveis” caracteriza esse núcleo: é adjunto adnominal. Já “diariamente” é <b>adjunto adverbial de tempo</b> — ele modifica o verbo, não um nome.",
+   "Por isso o livro diz que qualquer nome, em qualquer parte da oração, pode receber um adjunto adnominal. É o enunciador quem decide onde colocá-lo, para se comunicar com mais <b>clareza e exatidão</b>."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Na frase “A cidade implementa práticas sustentáveis diariamente”, qual é a diferença entre o papel de “sustentáveis” e o de “diariamente”?",
+    "modelo": "“Sustentáveis” caracteriza o substantivo “práticas” (um nome), por isso é adjunto adnominal. “Diariamente” modifica o verbo “implementa”, indicando tempo, por isso é adjunto adverbial.",
+    "chk": [
+     "Disse que “sustentáveis” se liga a um substantivo (práticas)?",
+     "Disse que “diariamente” se liga ao verbo e indica tempo?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Em outra frase do livro, “Os novos projetos urbanos visam reduzir a emissão de resíduos poluentes”, separe o sujeito, diga qual é o núcleo dele e quais palavras são adjuntos adnominais desse núcleo.",
+    "modelo": "Sujeito: “Os novos projetos urbanos”. Núcleo: projetos. Adjuntos adnominais do núcleo: os (artigo), novos (adjetivo) e urbanos (adjetivo).",
+    "chk": [
+     "Disse que o núcleo do sujeito é “projetos”?",
+     "Encontrei “os”, “novos” e “urbanos” como adjuntos adnominais?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Na frase do livro “As iniciativas inovadoras das cidades sustentáveis melhoram a qualidade de vida”, qual é o núcleo do sujeito e quais termos o acompanham caracterizando-o?",
+    "modelo": "Núcleo do sujeito: iniciativas. Acompanham e caracterizam esse núcleo: as (artigo), inovadoras (adjetivo) e das cidades sustentáveis (expressão com preposição; dentro dela, “sustentáveis” caracteriza “cidades”).",
+    "chk": [
+     "Disse que o núcleo é “iniciativas”?",
+     "Encontrei “as”, “inovadoras” e “das cidades (sustentáveis)” como termos que o caracterizam?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 4 · Capítulo 20 · pp. 84 e 86",
+  "emoji": "⚖️",
+  "u": "c16",
+  "titulo": "Mesma cobertura, outra função: adjunto × predicativo",
+  "texto": [
+   "Uma mesma palavra pode caracterizar o mesmo substantivo e, mesmo assim, ter <b>funções diferentes</b>, dependendo do lugar em que está. O livro compara duas frases: <i>“Uma cidade sustentável traz qualidade de vida para seus moradores”</i> e <i>“Aquela cidade é sustentável”</i>.",
+   "Na primeira, “sustentável” está <b>dentro do sujeito</b>, colada ao núcleo “cidade”: é <span class='destaque'>adjunto adnominal</span> e poderia sair sem estragar a estrutura da oração. Na segunda, “sustentável” está <b>no predicado</b>, depois do verbo “é”: é <span class='destaque'>predicativo do sujeito</span>. Se ela sair, a oração fica incompleta (“Aquela cidade é…”).",
+   "O objeto também pode receber caracterizações diferentes. O livro ensina: o <span class='destaque'>predicativo do objeto</span> é uma característica <b>temporariamente atribuída</b> ao objeto ou que <b>depende do julgamento do sujeito</b>; o <span class='destaque'>adjunto adnominal</span> é uma característica <b>própria e permanente</b> do objeto.",
+   "Veja a dupla do livro: em <i>“O prefeito considerou a obra importante”</i>, “importante” é a opinião do prefeito — predicativo do objeto. Em <i>“O prefeito iniciou a obra importante”</i>, “importante” é uma característica da própria obra — adjunto adnominal."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Segundo o livro, como diferenciar o predicativo do objeto do adjunto adnominal?",
+    "modelo": "Predicativo do objeto: é algo que se diz do objeto por um tempo ou pela opinião de quem fala (ex.: “considerou a obra importante”). Adjunto adnominal: é um jeito de ser que pertence ao próprio objeto, que ele tem sempre.",
+    "chk": [
+     "Disse que o predicativo do objeto é temporário ou depende do julgamento do sujeito?",
+     "Disse que o adjunto adnominal é característica própria/permanente?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Classifique o termo em MAIÚSCULAS como PO (predicativo do objeto) ou AA (adjunto adnominal) e justifique: (a) “Encontramos o livro DE CIÊNCIAS no fundo da prateleira.” (b) “Considero Lucas MEU MELHOR AMIGO.”",
+    "modelo": "(a) AA: “de Ciências” é uma característica própria do livro (é um livro de Ciências). (b) PO: “meu melhor amigo” é um julgamento de quem fala sobre Lucas (verbo “considero”).",
+    "chk": [
+     "Classifiquei (a) como adjunto adnominal?",
+     "Classifiquei (b) como predicativo do objeto, citando o julgamento/opinião?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Nas frases do livro “Nossa cidade é sustentável.” e “Visitei a cidade sustentável paranaense.”, diga a função de “sustentável” em cada uma e explique como você descobriu.",
+    "modelo": "1ª frase: predicativo do sujeito — vem depois do “é”; se eu tirar, sobra “Nossa cidade é…”, que fica faltando. 2ª frase: adjunto adnominal — está grudada em “cidade” (o lugar que visitei) e, se eu tirar, a frase continua inteira.",
+    "chk": [
+     "Disse que na 1ª é predicativo do sujeito?",
+     "Disse que na 2ª é adjunto adnominal?",
+     "Expliquei usando o lugar da palavra ou o teste de retirar?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 5 · Capítulo 20 · pp. 84 e 86",
+  "emoji": "🎯",
+  "u": "c16",
+  "titulo": "Quem faz e quem recebe: adjunto × complemento nominal",
+  "texto": [
+   "Tanto o adjunto adnominal quanto o <span class='destaque'>complemento nominal</span> podem delimitar o sentido de um nome. Por isso, o livro avisa que os casos com <b>substantivos abstratos</b> podem confundir — são nomes que trazem uma ação “escondida” dentro deles, como <i>explicação</i> (explicar) e <i>admiração</i> (admirar).",
+   "A regra do livro é esta: o <span class='destaque'>adjunto adnominal</span> indica o <b>agente</b> da ação implícita no substantivo abstrato (quem faz a ação). O <span class='destaque'>complemento nominal</span> indica o <b>alvo</b>, o receptor dessa ação (quem recebe a ação).",
+   "Veja os pares do livro: em <i>“A explicação do morador não tinha fundamento”</i>, é o morador quem explica — ele é o agente, então “do morador” é adjunto adnominal. Em <i>“A explicação ao morador não tinha fundamento”</i>, alguém explica algo ao morador — ele é o alvo, então “ao morador” é complemento nominal.",
+   "O mesmo vale para <i>“A admiração da cidade impulsionava o prefeito”</i> (a cidade admira: agente → adjunto adnominal) e <i>“A admiração pela cidade impulsionava o prefeito”</i> (a cidade é admirada: alvo → complemento nominal). Na confeitaria: quem faz o bolo é o confeiteiro; quem recebe é o cliente."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras, qual é a regra do livro para diferenciar adjunto adnominal de complemento nominal quando o substantivo é abstrato?",
+    "modelo": "Se o termo indica quem pratica a ação escondida no substantivo (o agente), é adjunto adnominal. Se indica quem recebe essa ação (o alvo), é complemento nominal.",
+    "chk": [
+     "Liguei adjunto adnominal a agente (quem faz)?",
+     "Liguei complemento nominal a alvo (quem recebe)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Compare as frases do livro: I. “O apoio aos moradores é essencial.” II. “O apoio dos moradores é essencial.” Em qual delas a expressão é adjunto adnominal? Justifique dizendo quem apoia e quem é apoiado.",
+    "modelo": "Na II (“dos moradores”) é adjunto adnominal, porque os moradores são os agentes: eles é que apoiam. Na I (“aos moradores”) é complemento nominal, porque os moradores são o alvo: eles recebem o apoio.",
+    "chk": [
+     "Disse que o adjunto adnominal está na frase II?",
+     "Expliquei quem apoia (agente) e quem é apoiado (alvo)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Na frase do livro “O bloqueio da avenida pelas obras prejudicou o trânsito”, classifique “da avenida” e “pelas obras” como AA ou CN e explique.",
+    "modelo": "“Da avenida” é complemento nominal: a avenida é o alvo, ela é que é bloqueada. “Pelas obras” é adjunto adnominal: as obras são o agente, elas é que bloqueiam.",
+    "chk": [
+     "Classifiquei “da avenida” como complemento nominal (alvo)?",
+     "Classifiquei “pelas obras” como adjunto adnominal (agente)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 6 · Capítulo 21 · pp. 100–101",
+  "emoji": "📦",
+  "u": "c17",
+  "titulo": "Vem ou vêm? As encomendas do verbo “vir”",
+  "texto": [
+   "O capítulo 21 fala de contos de fadas e contos maravilhosos, e o livro compara duas frases: <i>“O conto maravilhoso vem de países orientais, como a Índia”</i> e <i>“Os contos de fadas, em sua maioria, vêm da cultura celta”</i>. O verbo é o mesmo, mas numa ele aparece com acento e na outra, não. Por quê?",
+   "A regra do livro: o verbo “vir”, no <span class='destaque'>presente do modo indicativo</span>, diferencia a <b>3ª pessoa do singular</b> da <b>3ª pessoa do plural</b> apenas pelo <b>acento gráfico</b>: <b>ele vem → eles vêm</b>; <b>ela vem → elas vêm</b>. Falando, quase não se percebe a diferença; escrevendo, é o acento que mostra o plural.",
+   "Os verbos formados a partir de “vir” também se diferenciam pelo acento — mas aqui o <span class='destaque'>singular leva acento agudo</span> e o <span class='destaque'>plural leva acento circunflexo</span>: ela intervém → elas intervêm; ele provém → eles provêm; ele advém → eles advêm; ele sobrevém → eles sobrevêm.",
+   "<div class='olhar'><b>Como decidir na prova:</b> descubra o sujeito do verbo. Um só (singular)? Use <b>vem</b>. Mais de um (plural)? Use <b>vêm</b>. Às vezes o sujeito aparece depois do verbo ou é retomado por um “que” — procure bem antes de acentuar.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Por que “vem” e “vêm” se escrevem de jeitos diferentes? Explique usando a regra do livro.",
+    "modelo": "Porque, no presente do indicativo, o acento é o que diferencia a 3ª pessoa do singular (ele vem) da 3ª pessoa do plural (eles vêm).",
+    "chk": [
+     "Disse que “vem” é singular e “vêm” é plural (3ª pessoa)?",
+     "Disse que a diferença está só no acento gráfico?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Passe para o plural estas frases de um exercício do livro: “Ela sempre vem para a escola com fantasia de personagem.” e “Esse livro vem com adesivos de brindes.”",
+    "modelo": "“Elas sempre vêm para a escola com fantasia de personagem.” e “Esses livros vêm com adesivos de brindes.”",
+    "chk": [
+     "Escrevi “vêm” com acento circunflexo nas duas?",
+     "Passei também o sujeito para o plural (Elas; Esses livros)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Leia as duas frases do livro e explique O QUE vem da Irlanda em cada uma: I. “Assisti à apresentação daquela contadora de histórias que vem da Irlanda.” II. “Assisti à apresentação daquela contadora de histórias que vêm da Irlanda.”",
+    "modelo": "Na I (vem, singular), quem vem da Irlanda é a contadora de histórias. Na II (vêm, plural), são as histórias que vêm da Irlanda.",
+    "chk": [
+     "Disse que na I é a contadora?",
+     "Disse que na II são as histórias, por causa do plural “vêm”?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 7 · Capítulo 21 · pp. 104–105",
+  "emoji": "🔔",
+  "u": "c17",
+  "titulo": "Vocativo: o chamado no balcão",
+  "texto": [
+   "No conto <i>“Os anões mágicos”</i>, um casal conversa: <i>“Ei, querida, vamos descobrir quem nos ajuda dessa maneira?”</i> e <i>“Marido, marido… como poderemos retribuir?”</i>. As palavras “querida” e “marido” servem para chamar a pessoa com quem se está falando. Esse é o papel do <span class='destaque'>vocativo</span>.",
+   "O livro define: o vocativo serve para <b>invocar, chamar e dirigir-se</b> a uma pessoa ou a outro <b>ser personificado</b>. Em <i>“Vovó, vamos caminhar por essa praça?”</i>, “Vovó” é a pessoa com quem se fala diretamente. A palavra vem do latim <i>vocare</i>, que significa “chamar”, “invocar” — a mesma raiz de <b>vocação</b> (um tipo de chamado).",
+   "O vocativo <b>não pertence ao sujeito nem ao predicado</b>: é um <span class='destaque'>termo isolado</span>. Se for retirado, a oração continua completa: “Vamos caminhar por essa praça?” tem sujeito desinencial (nós, indicado pelo verbo) e predicado.",
+   "Para mostrar esse isolamento, o vocativo vem <b>sempre separado por vírgulas</b>. Ele pode aparecer no <b>começo</b>, no <b>meio</b> ou no <b>fim</b> da oração (“Vamos, vovó, caminhar por essa praça?” / “Vamos caminhar por essa praça, vovó?”) e pode vir ou não precedido de uma <b>interjeição</b>, como o “Ei” do marido."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "O que é vocativo? E por que ele sempre aparece separado por vírgulas?",
+    "modelo": "É a palavra usada para chamar quem está ouvindo (uma pessoa ou algo tratado como pessoa). As vírgulas mostram que ele fica “de fora”: não faz parte do sujeito nem do predicado, e assim ninguém confunde o chamado com outra parte da frase.",
+    "chk": [
+     "Disse que o vocativo serve para chamar/se dirigir a alguém?",
+     "Disse que as vírgulas mostram que ele é isolado (fora do sujeito e do predicado)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Nestas falas de contos tradicionais (exercício do livro), escreva o vocativo e diga com quem o personagem está falando: “Espelho, espelho meu, existe alguém mais bela do que eu?” / “Porquinho, abre essa porta senão eu vou soprar!” / “São para te ouvir melhor, minha netinha!”",
+    "modelo": "“Espelho, espelho meu” — a rainha fala com o espelho (um ser personificado). “Porquinho” — o lobo fala com um porquinho. “Minha netinha” — o lobo (fingindo ser a vovó) fala com Chapeuzinho.",
+    "chk": [
+     "Achei os três vocativos (espelho, porquinho, minha netinha)?",
+     "Disse com quem cada personagem fala?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Insira um vocativo nestas frases do livro — na primeira, no COMEÇO; na segunda, no FIM —, pontuando corretamente: “Você mudou o final da história?” e “Você vai precisar de ajuda.”",
+    "modelo": "Resposta pessoal. Confira: no começo, o vocativo vem seguido de vírgula (Vocativo, você mudou…?); no fim, vem depois de uma vírgula (…de ajuda, vocativo.). O vocativo precisa ser alguém com quem se fala.",
+    "chk": [
+     "Coloquei vírgula depois do vocativo do começo?",
+     "Coloquei vírgula antes do vocativo do fim?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 8 · Capítulo 21 · pp. 106–109",
+  "emoji": "📣",
+  "u": "c17",
+  "titulo": "Chamado com ênfase: vocativo × sujeito",
+  "texto": [
+   "Cuidado com os nomes de pessoas: eles podem ser <span class='destaque'>sujeito</span> ou <span class='destaque'>vocativo</span>, e muitas vezes é a <b>vírgula</b> que mostra a diferença. Em <i>“Lucas e Rogério estão escalados, treinador?”</i>, “Lucas e Rogério” é o sujeito (são eles que estão escalados), e “treinador” é o vocativo (é com ele que se fala).",
+   "O vocativo pode ser <span class='destaque'>enfatizado</span> de duas maneiras, diz a Síntese do livro: pela <b>repetição</b> (como em “Marido, marido…”) ou quando vem <b>precedido de uma interjeição</b> (como em “Ei, querida…”).",
+   "Apesar de ser isolado, o vocativo <b>não é totalmente dispensável</b>: ele marca a interação, a dinâmica e o movimento de um diálogo. Em gêneros como a <b>piada</b>, os <b>contos de assombração</b> e a <b>crônica narrativa</b>, a conversa entre os personagens é fundamental para criar humor ou suspense.",
+   "No poema “Seu lobo”, de Sérgio Capparelli, as perguntas e respostas são marcadas por vocativos: <i>“Seu lobo, por que esses olhos tão grandes? / Pra te ver, Chapeuzinho.”</i> — dá para saber quem fala com quem só pelos chamados."
+  ],
+  "perguntas": [
+   {
+    "tag": "apl",
+    "q": "Indique se “Paulo” é sujeito ou vocativo em cada frase do livro e explique como você descobriu: (a) “Paulo vai se encontrar com os amigos na lanchonete hoje?” (b) “Paulo, vai se encontrar com os amigos na lanchonete hoje?”",
+    "modelo": "(a) Sujeito: sem vírgula, Paulo é quem vai se encontrar com os amigos (fala-se sobre ele). (b) Vocativo: com vírgula, alguém está chamando Paulo e perguntando a ele.",
+    "chk": [
+     "Disse que em (a) é sujeito e em (b) é vocativo?",
+     "Usei a vírgula e/ou a ideia de “falar com” × “falar sobre” para explicar?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Escreva o vocativo destas frases do livro e diga qual é o sujeito de cada oração: “Gabriel e Carla, recolham já os pratos da mesa!” e “Eu posso ajudá-lo em algo mais, senhor?”",
+    "modelo": "Vocativos: “Gabriel e Carla” e “senhor”. Sujeitos: na 1ª, o sujeito não está escrito — é “vocês”, indicado pelo verbo “recolham” (sujeito desinencial); na 2ª, o sujeito é “Eu”.",
+    "chk": [
+     "Achei os vocativos “Gabriel e Carla” e “senhor”?",
+     "Percebi que na 1ª o sujeito é “vocês” (não escrito) e na 2ª é “Eu”?"
+    ]
+   },
+   {
+    "tag": "conc",
+    "q": "Por que o livro diz que o vocativo, mesmo sendo um termo isolado, não é totalmente dispensável? Cite um gênero em que ele é importante.",
+    "modelo": "Porque ele marca a interação e a dinâmica do diálogo, mostrando quem fala com quem. É importante em gêneros como piada, contos de assombração e crônica narrativa (humor, suspense).",
+    "chk": [
+     "Disse que ele marca a interação/o diálogo?",
+     "Citei pelo menos um gênero (piada, conto de assombração, crônica)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 9 · Capítulo 22 · pp. 122–123",
+  "emoji": "⏰",
+  "u": "xx",
+  "titulo": "Ora ou hora? O relógio do forno",
+  "texto": [
+   "Numa tirinha do livro, uma princesa cercada de sapos reclama: <i>“Ora, nas histórias parecia tão mais fácil!”</i>. Em outra, alguém diz: <i>“Tem hora que é melhor se fingir de morto!”</i>. As palavras “ora” e “hora” têm a <b>mesma pronúncia</b>, mas <b>sentido e grafia diferentes</b> — por isso muita gente se confunde na hora de escrever.",
+   "<span class='destaque'>“Ora”</span> (sem H) pode ser uma <b>interjeição</b>, indicando impaciência, espanto ou dúvida: <i>“Ora, lá vem você de novo com essa história!”</i>. Também pode ser uma <b>conjunção alternativa</b>, indicando a alternância de fatos; nesse caso, aparece repetida (“ora… ora”): <i>“Ora você diz a verdade, ora inventa mil fábulas!”</i>.",
+   "<span class='destaque'>“Hora”</span> (com H) é um <b>substantivo feminino</b> que nomeia um segmento de tempo: <i>“Puxa! Nem percebi a hora passar.”</i>. Também pode indicar um <b>momento, uma circunstância</b>: <i>“Tudo tem uma hora certa para começar.”</i>.",
+   "<div class='olhar'><b>Duas expressões do livro:</b> <b>por ora</b> = por enquanto · <b>por hora</b> = em um intervalo de 60 minutos. E atenção: “ora… ora”, assim como “ou… ou”, é conjunção alternativa — mas usar uma ou outra pode mudar o sentido da frase.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "apl",
+    "q": "Complete com “ora” ou “hora” (frases de um exercício do livro) e diga a classe da palavra em cada caso: “Já está na ___ de você assumir novas responsabilidades.” / “___, pare de reclamar e tome uma atitude!” / “___ diz que vai embora, ___ que decidiu ficar.”",
+    "modelo": "hora (substantivo: momento) / Ora (interjeição: impaciência) / Ora… ora (conjunção alternativa: alternância).",
+    "chk": [
+     "Usei “hora” só na primeira?",
+     "Usei “Ora” na segunda e “Ora… ora” na terceira?",
+     "Dei as classes (substantivo, interjeição, conjunção)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Complete com “por ora” ou “por hora” e explique a sua escolha: “Oito quilômetros ___ é a velocidade de corrida do meu pai todas as manhãs.” / “Não há mais nada a fazer. ___, basta esperar.”",
+    "modelo": "“por hora”, porque fala de velocidade, de quanto se corre em 60 minutos. / “Por ora”, porque significa “por enquanto”.",
+    "chk": [
+     "Usei “por hora” na frase da velocidade (60 minutos)?",
+     "Usei “Por ora” (= por enquanto) na segunda?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique a diferença de sentido entre estas frases do livro: “Ora lê o livro, ora conta a história de memória.” e “Ou lê o livro, ou conta a história de memória.”",
+    "modelo": "Com “ora… ora”, as duas coisas acontecem, alternando: às vezes a pessoa lê o livro, às vezes conta de memória. Com “ou… ou”, é uma coisa ou outra: só uma das duas vai acontecer (há uma escolha).",
+    "chk": [
+     "Disse que “ora… ora” indica alternância (as duas coisas acontecem em momentos diferentes)?",
+     "Disse que “ou… ou” indica escolha (uma ou outra)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 10 · Capítulo 22 · pp. 124–127",
+  "emoji": "🏷️",
+  "u": "xx",
+  "titulo": "Aposto: a etiqueta que explica o doce",
+  "texto": [
+   "O capítulo 22 traz o conto <i>“A sapa casada”</i>, de Alberto Figueiredo Pimentel: Reinaldo, moço honrado e filho de um rico fidalgo, promete casar com a dona de uma voz linda que ouviu na lagoa — mesmo que fosse uma sapa. Era uma sapa! Ele cumpre a palavra e, no fim, a sapa vira princesa.",
+   "A partir do conto, o livro apresenta o <span class='destaque'>aposto</span>: um termo que serve para <b>anexar à oração uma informação que esclarece, desenvolve ou resume</b> a palavra à qual se refere. Se for excluído, <b>não altera a estrutura sintática</b> da frase. Exemplo: <i>“Os súditos, todos fidalgos, formavam o cortejo da princesa.”</i> → sem o aposto: “Os súditos formavam o cortejo da princesa.”",
+   "O aposto é isolado dos outros termos por <span class='destaque'>vírgulas, travessão ou dois-pontos</span>: <i>“A história – exemplo de um conto clássico – é recontada pelas crianças.”</i> / <i>“A sapa foi seguida pelo seu cortejo: sapos, sapinhos e sapões de todos os estilos.”</i> / <i>“Os convidados, parentes e conhecidos, ficaram chocados com a transformação.”</i>",
+   "Ele pode se referir a vários termos da oração: <b>sujeito</b> (A princesa, <b>vítima de um feitiço</b>, vivia como sapa), <b>objeto direto</b> (O príncipe ouviu a música, <b>uma romanza</b>), <b>objeto indireto</b> (Todos riram de Reinaldo, <b>o príncipe-sapo</b>), <b>predicativo do sujeito</b> (Este é Reinaldo, <b>o protagonista do conto</b>) e <b>adjunto adverbial</b> (Naquela manhã, <b>especificamente ao meio-dia</b>, houve uma transformação).",
+   "<div class='olhar'><b>Aplicando o assunto (p. 127):</b> o aposto é dispensável para a estrutura, mas não é indiferente ao sentido. Em <i>“Os contos dos irmãos Grimm, pesquisadores alemães, vêm da tradição oral. Já os de Andersen, escritor dinamarquês, foram criados por ele.”</i>, só com os apostos o leitor liga cada autor ao seu país.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "apl",
+    "q": "Nestas frases do livro, escreva o aposto e o termo a que ele se refere: “Reinaldo, o filho solteiro, encantou-se com a voz da sapa.” / “A sapa, dona da bela voz, tornou-se uma princesa.”",
+    "modelo": "Aposto “o filho solteiro”, referindo-se a Reinaldo. Aposto “dona da bela voz”, referindo-se a “a sapa”.",
+    "chk": [
+     "Achei os dois apostos (o filho solteiro; dona da bela voz)?",
+     "Liguei cada um ao termo certo (Reinaldo; a sapa)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Pontue o aposto destas frases de um exercício do livro (use vírgulas, dois-pontos ou travessões): “A cidade a mais desenvolvida da região não tinha estrutura para tantos torcedores.” / “Era só o que faltava para o namoro o consentimento dos pais.”",
+    "modelo": "“A cidade, a mais desenvolvida da região, não tinha estrutura para tantos torcedores.” / “Era só o que faltava para o namoro: o consentimento dos pais.” (Também vale usar travessões no lugar das vírgulas na primeira.)",
+    "chk": [
+     "Isolei “a mais desenvolvida da região” dos dois lados?",
+     "Separei “o consentimento dos pais” (com dois-pontos, vírgula ou travessão)?"
+    ]
+   },
+   {
+    "tag": "conc",
+    "q": "Se o aposto pode ser retirado sem estragar a estrutura da frase, por que o livro diz que ele não é indiferente ao sentido?",
+    "modelo": "Porque ele traz informações que ajudam o leitor a entender a mensagem — por exemplo, explicar quem é alguém ou um termo difícil. No exemplo dos irmãos Grimm (pesquisadores alemães) e de Andersen (escritor dinamarquês), sem os apostos o leitor não saberia de onde é cada autor.",
+    "chk": [
+     "Disse que ele ajuda o leitor a entender (esclarece/explica)?",
+     "Dei um exemplo (Grimm/Andersen ou outro do livro)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Fornada 11 · Capítulo 22 · pp. 126–131",
+  "emoji": "📋",
+  "u": "xx",
+  "titulo": "Os quatro sabores do aposto",
+  "texto": [
+   "A Síntese do livro resume: o aposto <span class='destaque'>explica, especifica, recapitula ou enumera</span> informações sobre outro termo da oração. Veja cada “sabor”:",
+   "<ul><li><b>Enumeração</b> — desenvolve um termo citado antes, listando seus elementos: <i>“Ele tinha todas as características de um príncipe: <b>beleza, serenidade e honradez</b>.”</i></li><li><b>Recapitulação</b> — resume termos citados antes: <i>“Beleza, serenidade e honradez, <b>todas as características de um príncipe</b> se encontravam nele.”</i></li><li><b>Explicação</b> — esclarece quem ou o que é o termo: <i>“A princesa, <b>vítima de um feitiço</b>, vivia como sapa.”</i></li><li><b>Especificação</b> — o <span class='destaque'>aposto especificativo</span> individualiza um substantivo genérico.</li></ul>",
+   "O aposto especificativo é diferente dos outros: ele <b>não é marcado por nenhuma pontuação</b> nem por mudança na entonação. Em <i>“O escritor Hans Christian Andersen escreveu seus próprios contos”</i> e <i>“O poeta e dramaturgo Shakespeare era sua inspiração”</i>, entre tantos escritores, só Andersen é ressaltado; entre tantos poetas e dramaturgos, identifica-se só Shakespeare.",
+   "Mais dois detalhes das atividades: o aposto <b>pode aparecer antes</b> do termo a que se refere, e às vezes vem <b>precedido de expressões explicativas</b>: <b>a saber, isto é, quais sejam, tais como, por exemplo</b>."
+  ],
+  "perguntas": [
+   {
+    "tag": "apl",
+    "q": "Diga o tipo de aposto (enumeração, recapitulação, explicação ou especificação) nestas frases de um exercício do livro: “Minha irmã Ane viaja hoje para o exterior.” / “Livros, áudios e outros materiais, tudo já está incluído na mensalidade.” / “Você já sabe meu desejo: um chocolate, um livro e um pedido de desculpas oficial.”",
+    "modelo": "“Ane” = especificação (sem pontuação, individualiza “irmã”). “tudo” = recapitulação (resume os itens citados antes). “um chocolate, um livro e um pedido de desculpas oficial” = enumeração (lista o que é o desejo).",
+    "chk": [
+     "Acertei a especificação (Ane)?",
+     "Acertei a recapitulação (tudo)?",
+     "Acertei a enumeração (a lista depois dos dois-pontos)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Reescreva esta frase do livro invertendo a posição do aposto (ele deve vir ANTES do termo a que se refere): “Os contos maravilhosos, textos escritos em linguagem universal, não têm fronteiras.”",
+    "modelo": "“Textos escritos em linguagem universal, os contos maravilhosos não têm fronteiras.”",
+    "chk": [
+     "Comecei a frase pelo aposto (textos escritos em linguagem universal)?",
+     "Mantive a vírgula separando o aposto de “os contos maravilhosos”?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Reescreva a frase do livro inserindo, antes do aposto, uma das expressões explicativas (a saber, isto é, quais sejam, tais como, por exemplo): “Hans Christian Andersen criava histórias fantásticas – ‘A Pequena Sereia’, ‘O Soldadinho de Chumbo’ e ‘O Patinho Feio’.”",
+    "modelo": "Por exemplo: “Hans Christian Andersen criava histórias fantásticas, tais como ‘A Pequena Sereia’, ‘O Soldadinho de Chumbo’ e ‘O Patinho Feio’.” (Também valem “a saber”, “por exemplo”, “quais sejam”.)",
+    "chk": [
+     "Coloquei uma das expressões do livro antes da lista de histórias?",
+     "A lista de histórias continua como aposto de “histórias fantásticas”?"
+    ]
+   }
+  ]
+ }
+]
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu as 11 fornadas e respondeu a autoavaliação. Agora teste o que aprendeu.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir as '+p.total+' fornadas (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado — Português 7º, 08/10/2026) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' '); }
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco '+bloco.u+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="porto">'+bloco.porto+'</div><h3>'+bloco.emoji+' '+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Esta fornada abre quando você conferir a fornada anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0 || p.indexOf('<ul')===0 ? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label>'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')">'+(ep.resp||'').replace(/</g,'&lt;')+'</textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir esta fornada</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  if(b.conferido){ btn.textContent='✔️ Fornada conferida'; btn.disabled=true; return; }
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned || ep.resp===ep.tentou){
+        if(!ep.warned){ ep.warned=true; ep.tentou=ep.resp; }
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--ambar)">✍️ Reescreva as respostas marcadas em amarelo (mude o que escreveu) e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#8fe0b4">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Fornada conferida'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">➡️ Ir para a próxima fornada</a>';
+  }
+}
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3b3">🔁 Esta fornada tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--ambar)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#8fe0b4">✅ Fornada concluída com sucesso!</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Fornada '+(i+1)+' ('+bloco.titulo+'): pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Fornada '+(i+1)+' ('+bloco.titulo+'): revisar — "'+pt+'"'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Fornadas conferidas:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como "Não" na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3b3">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#8fe0b4">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_confeitaria-dos-nomes.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (O Quiz continua destravado se já tiver sido destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>

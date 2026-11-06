@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado · Confeitaria dos Nomes · Português 7º</title>
+<style>
+  :root{--palco:#1a1013;--palco2:#2a1a1f;--aco:#4a2e37;--aco2:#6b4552;--ambar:#ffb84d;--ciano:#ff8fb8;--terra:#b99cff;--verde:#5fe3c0;--vermelho:#e0403f;--azul:#13244a;--texto:#fbeee6;--cinza:#c9aeb2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#2a1a1f,#1a1013 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0e1a38,#13244a);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:6px solid var(--vermelho)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#c9d6f5;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#dbe4fa;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--vermelho);color:#fff;font-weight:bold}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:#ff8a89;font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#122a1f,#1b4d36);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:var(--vermelho);width:0;transition:width .3s}
+  .q{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:#ff8a89;font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tipo{float:right;font-size:.7rem;color:#fff;border-radius:10px;padding:2px 8px;background:#2a3a5a}
+  .q .tipo.som{background:#5a2a7a}.q .tipo.rom{background:#1f5a4a}.q .tipo.dis{background:#7a3a1a}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .afirm{background:#221519;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}.afirm.no{border-left-color:#777;color:#aaa}
+  .alt{display:block;background:#221519;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:#ff8a89}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:#ff8a89;background:#2a1620}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#555;background:#1e1c22;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#221519;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .soma input{width:110px;padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#150c0f;color:var(--texto);font-size:1.05rem;text-align:center}
+  .soma .lab{font-size:.85rem;color:var(--cinza);margin-left:8px}
+  .q textarea{width:100%;min-height:110px;background:#150c0f;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;margin-top:6px}
+  .modelo{display:none;margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem}
+  .modelo.show{display:block}
+  .enviar{width:100%;background:var(--vermelho);color:#fff;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#3a262c;color:#9a7f86;cursor:not-allowed}
+  .gab{background:var(--palco2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#150c0f;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ciano);color:#3a0d20;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim a{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ciano);color:#3a0d20;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+  h1,h2,h3{font-family:'Trebuchet MS','Segoe UI',system-ui,sans-serif;letter-spacing:.2px}
+  .fita{height:14px;background-color:#1a1013;background-image:radial-gradient(circle,#ff8fb8 2px,transparent 2.6px),radial-gradient(circle,#ffb84d 2px,transparent 2.6px),radial-gradient(circle,#5fe3c0 2px,transparent 2.6px),radial-gradient(circle,#b99cff 2px,transparent 2.6px);background-size:28px 14px;background-position:0 2px,7px 8px,14px 3px,21px 9px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Colégio Coração Feliz · Língua Portuguesa · 7º ano</div>
+  <h1>📝 Simulado — O Grande Concurso de Confeitaria</h1>
+  <p>28 questões no estilo da prova · múltipla escolha, somatório, números romanos e discursiva · Código SIM</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a class="on" href="simulado.html">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>📝 Valendo!</h2>
+    <p>Faça como se fosse a prova: <b>28 questões</b>, todas obrigatórias. Nas de <b>somatório</b>, some os números das afirmativas corretas. Nas de <b>números romanos</b>, leia as afirmativas I, II, III e IV e escolha a alternativa certa. Na <b>discursiva</b>, escreva com as suas palavras (os pais corrigem com a resposta-modelo do gabarito). Depois de enviar, as respostas travam e sai o código <b>SIM</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar simulado (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código SIM que apareceu no topo.<br>
+    <input id="gab-in" placeholder="SIM-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="fim" id="fim" style="display:none">
+    <h3>🏁 Trilha completa!</h3>
+    <p>Você percorreu os quatro materiais na ordem. Agora tudo fica aberto para revisar quantas vezes quiser até a prova.</p>
+    <a href="index.html">🏠 Voltar ao início</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🍰🧁🔔 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Simulado, leia o Resumo até o fim.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='confeitaria_p7m3';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function checarTrava(){
+  if(podeAbrir('simulado')) return true;
+  var txt='Para abrir o Simulado, leia o Resumo até o fim e clique em "Li o resumo até o fim".';
+  if(!etapaConcluida('quiz')) txt='Para abrir o Simulado, envie o Quiz e leia o Resumo até o fim.';
+  if(!etapaConcluida('leitura')) txt='Para abrir o Simulado, conclua a Leitura Guiada, envie o Quiz e leia o Resumo até o fim.';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== QUESTÕES (Callis Língua Portuguesa 7 L2: Cap. 20, 21 e 22) — correta guardada pelo id ====== */
+var Q=[
+ {
+  "tipo": "mc",
+  "p": "Na frase “Afastamos aquela ideia obsoleta de que sustentabilidade está atrelada somente ao verde e ao meio ambiente”, entre os adjuntos adnominais do substantivo “ideia” estão:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“aquela” (pronome) e “obsoleta” (adjetivo).",
+    "e": "Correto: os dois acompanham e caracterizam “ideia” (atividade da p. 86).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "“afastamos” e “somente”.",
+    "e": "“Afastamos” é verbo e “somente” é advérbio: nenhum dos dois acompanha um substantivo."
+   },
+   {
+    "id": "c",
+    "t": "“sustentabilidade” e “meio ambiente”.",
+    "e": "São substantivos, não termos que caracterizam “ideia”."
+   },
+   {
+    "id": "d",
+    "t": "“atrelada” e “somente”.",
+    "e": "Essas palavras estão em outra parte da frase e não caracterizam “ideia”."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “As cidades grandes que não investem em sustentabilidade comprometem a qualidade de vida dos moradores”, o trecho “que não investem em sustentabilidade” é um adjunto adnominal formado por:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "uma oração inteira.",
+    "e": "Correto: o trecho tem verbo (investem) e caracteriza “cidades” — é o exemplo de oração do livro (p. 82).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "um numeral.",
+    "e": "Não há número nesse trecho."
+   },
+   {
+    "id": "c",
+    "t": "um artigo.",
+    "e": "Artigos são palavras como “o, a, os, as”."
+   },
+   {
+    "id": "d",
+    "t": "uma locução adjetiva.",
+    "e": "Locução adjetiva é uma expressão curta, como “de estudo”; aqui há um verbo, então é uma oração."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Assinale a alternativa em que a palavra em MAIÚSCULAS é um ARTIGO funcionando como adjunto adnominal:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "A cidade superou as expectativas de todos. (A)",
+    "e": "Correto: “a” é artigo e acompanha “cidade” (exemplo do livro, p. 82).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "ESSA praça está sendo reformada desde quando?",
+    "e": "“Essa” é pronome adjetivo."
+   },
+   {
+    "id": "c",
+    "t": "TRÊS quilômetros separam uma praça da outra.",
+    "e": "“Três” é numeral."
+   },
+   {
+    "id": "d",
+    "t": "A cidade receberá equipamentos de vigilância ELETRÔNICA.",
+    "e": "“Eletrônica” é adjetivo."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em qual frase o termo em MAIÚSCULAS é ADJUNTO ADNOMINAL?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Trata-se de um projeto INVIÁVEL.",
+    "e": "Correto: “inviável” acompanha “projeto” dentro do mesmo termo — adjunto adnominal (atividade da p. 86).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Seu projeto continua INVIÁVEL.",
+    "e": "Aqui “inviável” está no predicado, depois de “continua”: predicativo do sujeito."
+   },
+   {
+    "id": "c",
+    "t": "Nossa cidade é SUSTENTÁVEL.",
+    "e": "Está no predicado, depois de “é”: predicativo do sujeito."
+   },
+   {
+    "id": "d",
+    "t": "O prefeito considerou a obra IMPORTANTE.",
+    "e": "Depende do julgamento do prefeito: predicativo do objeto."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Compare: I. “Uma cidade sustentável traz qualidade de vida para seus moradores.” II. “Aquela cidade é sustentável.” É correto afirmar que:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "em I, “sustentável” pode ser retirada sem prejudicar a estrutura da oração; em II, não.",
+    "e": "Correto: em I é adjunto adnominal (termo acessório); em II é predicativo do sujeito e, sem ele, a oração fica incompleta (p. 84).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "nas duas frases, “sustentável” é adjunto adnominal.",
+    "e": "Em II, “sustentável” está no predicado: é predicativo do sujeito."
+   },
+   {
+    "id": "c",
+    "t": "em I, “sustentável” está no predicado.",
+    "e": "Em I, “sustentável” está no sujeito (“Uma cidade sustentável”)."
+   },
+   {
+    "id": "d",
+    "t": "em II, “sustentável” é adjunto adnominal porque caracteriza “cidade”.",
+    "e": "Caracterizar o mesmo nome não basta: em II a palavra está no predicado, depois de “é”."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “A explicação ao morador não tinha fundamento”, o termo “ao morador” é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "complemento nominal, pois o morador é o alvo da explicação.",
+    "e": "Correto: o morador recebe a explicação — alvo da ação implícita no substantivo abstrato (p. 84).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "adjunto adnominal, pois o morador é quem explica.",
+    "e": "Quem explica apareceria em “A explicação DO morador”."
+   },
+   {
+    "id": "c",
+    "t": "vocativo, pois chama o morador.",
+    "e": "Ninguém está sendo chamado."
+   },
+   {
+    "id": "d",
+    "t": "aposto, pois explica a palavra “explicação”.",
+    "e": "Não há explicação isolada por vírgulas; o termo completa o sentido de “explicação”."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em qual alternativa o termo em MAIÚSCULAS é ADJUNTO ADNOMINAL por indicar o AGENTE da ação?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "A explicação DO MORADOR não tinha fundamento.",
+    "e": "Correto: o morador é quem explica — agente = adjunto adnominal (p. 84).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "A admiração PELA CIDADE impulsionava o prefeito.",
+    "e": "A cidade é admirada: alvo = complemento nominal."
+   },
+   {
+    "id": "c",
+    "t": "O apoio AOS MORADORES é essencial.",
+    "e": "Os moradores recebem o apoio: alvo = complemento nominal."
+   },
+   {
+    "id": "d",
+    "t": "O bloqueio DA AVENIDA pelas obras prejudicou o trânsito.",
+    "e": "A avenida é bloqueada: alvo = complemento nominal (o agente é “pelas obras”)."
+   }
+  ]
+ },
+ {
+  "tipo": "som",
+  "p": "Sobre o ADJUNTO ADNOMINAL, some os números das afirmativas CORRETAS:",
+  "itens": [
+   {
+    "v": 1,
+    "t": "O adjunto adnominal especifica ou delimita o significado de um substantivo.",
+    "e": "Correta: definição do livro (p. 82).",
+    "ok": true
+   },
+   {
+    "v": 2,
+    "t": "O adjunto adnominal só pode aparecer no sujeito da oração.",
+    "e": "Errada: pode acompanhar nomes no sujeito ou no predicado."
+   },
+   {
+    "v": 4,
+    "t": "Em “A cidade implementa práticas sustentáveis diariamente”, “sustentáveis” é adjunto adnominal de “práticas”.",
+    "e": "Correta (p. 83).",
+    "ok": true
+   },
+   {
+    "v": 8,
+    "t": "Em “A cidade implementa práticas sustentáveis diariamente”, “diariamente” é adjunto adnominal.",
+    "e": "Errada: “diariamente” é adjunto adverbial de tempo (modifica o verbo)."
+   },
+   {
+    "v": 16,
+    "t": "A função de adjunto adnominal pode ser exercida por adjetivo, locução adjetiva, artigo, pronome adjetivo, numeral e oração.",
+    "e": "Correta: Síntese da p. 87.",
+    "ok": true
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Passando para o plural a frase “O conto tradicional vem sendo adaptado para o cinema há anos”, a forma correta é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Os contos tradicionais vêm sendo adaptados para o cinema há anos.",
+    "e": "Correto: sujeito no plural → “vêm”, com acento circunflexo (p. 100).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Os contos tradicionais vem sendo adaptados para o cinema há anos.",
+    "e": "Sem acento, “vem” é singular; o sujeito está no plural."
+   },
+   {
+    "id": "c",
+    "t": "Os contos tradicionais vém sendo adaptados para o cinema há anos.",
+    "e": "O plural de “vir” leva acento circunflexo (^), não agudo."
+   },
+   {
+    "id": "d",
+    "t": "O conto tradicional vêm sendo adaptado para o cinema há anos.",
+    "e": "O sujeito continuou no singular: “vêm” não combina com ele."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Assinale a alternativa em que a forma do verbo está CORRETA:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Elas intervêm.",
+    "e": "Correto: nos derivados de “vir”, o plural leva circunflexo (p. 100).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Ela intervêm.",
+    "e": "Com sujeito singular, o certo é “intervém” (acento agudo)."
+   },
+   {
+    "id": "c",
+    "t": "Eles advém.",
+    "e": "Com sujeito plural, o certo é “advêm” (circunflexo)."
+   },
+   {
+    "id": "d",
+    "t": "Ele sobrevêm.",
+    "e": "Com sujeito singular, o certo é “sobrevém” (agudo)."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Passando para o plural a pergunta “Vem com encarte o seu guia de leitura?”, a forma correta é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Vêm com encarte os seus guias de leitura?",
+    "e": "Correto: o sujeito (“os seus guias de leitura”) aparece depois do verbo, mas está no plural → “vêm” (atividade da p. 100).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Vem com encarte os seus guias de leitura?",
+    "e": "O sujeito está no plural; “vem” sem acento é singular."
+   },
+   {
+    "id": "c",
+    "t": "Vêm com encarte o seu guia de leitura?",
+    "e": "O sujeito continuou no singular: aqui o certo seria “vem”."
+   },
+   {
+    "id": "d",
+    "t": "Vém com encarte os seus guias de leitura?",
+    "e": "O plural de “vir” leva circunflexo, não agudo."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre o USO DO VERBO “VIR”:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "No presente do indicativo, “vem” (3ª pessoa do singular) e “vêm” (3ª pessoa do plural) se diferenciam apenas pelo acento gráfico.",
+    "e": "Correta (p. 100).",
+    "ok": true
+   },
+   {
+    "n": "II",
+    "t": "Nos verbos formados a partir de “vir”, o singular leva acento agudo e o plural, acento circunflexo.",
+    "e": "Correta (p. 100).",
+    "ok": true
+   },
+   {
+    "n": "III",
+    "t": "Em “Assisti à apresentação daquela contadora de histórias que vêm da Irlanda”, quem vem da Irlanda é a contadora.",
+    "e": "Errada: com “vêm” (plural), são as histórias que vêm da Irlanda."
+   },
+   {
+    "n": "IV",
+    "t": "A frase “Puxa! Seus sapatos vem com rodinha?” está de acordo com a gramática.",
+    "e": "Errada: o sujeito “seus sapatos” está no plural; o certo é “vêm”."
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas I e II.",
+    "e": "Só I e II estão corretas.",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Apenas I, II e IV.",
+    "e": "A IV está errada: deveria ser “vêm”."
+   },
+   {
+    "id": "c",
+    "t": "I, II, III e IV.",
+    "e": "III e IV estão erradas."
+   },
+   {
+    "id": "d",
+    "t": "Apenas III e IV.",
+    "e": "III e IV são justamente as erradas."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “Vovó, vamos caminhar por essa praça?”, se retirarmos o vocativo, a oração:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "continua completa: tem sujeito desinencial (nós) e predicado.",
+    "e": "Correto: o vocativo é termo isolado e pode sair sem prejuízo para a estrutura (p. 104).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "fica sem sujeito, porque “Vovó” era o sujeito.",
+    "e": "“Vovó” não é sujeito: é com ela que se fala. O sujeito é “nós”, indicado pelo verbo."
+   },
+   {
+    "id": "c",
+    "t": "fica sem verbo.",
+    "e": "O verbo “vamos” continua na oração."
+   },
+   {
+    "id": "d",
+    "t": "fica com sentido de afirmação, e não de pergunta.",
+    "e": "Retirar o vocativo não muda o tipo de frase."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em qual alternativa a vírgula do vocativo está CORRETA?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Vamos caminhar por essa praça, vovó?",
+    "e": "Correto: no fim da oração, o vocativo vem separado por vírgula (p. 105).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Vamos caminhar, por essa praça vovó?",
+    "e": "A vírgula deve separar o vocativo “vovó”, e não “por essa praça”."
+   },
+   {
+    "id": "c",
+    "t": "Vovó vamos, caminhar por essa praça?",
+    "e": "Faltou a vírgula logo depois de “Vovó”, e sobrou uma no meio da frase."
+   },
+   {
+    "id": "d",
+    "t": "Vamos caminhar por essa, praça vovó?",
+    "e": "A vírgula está no lugar errado e o vocativo ficou sem separação."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “Como você prefere seu embrulho, meu bem?”, o termo “meu bem” é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "vocativo.",
+    "e": "Correto: é a pessoa com quem se fala, separada por vírgula (atividade da p. 108).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "aposto do substantivo “embrulho”.",
+    "e": "“Meu bem” não explica o embrulho: é um chamado."
+   },
+   {
+    "id": "c",
+    "t": "sujeito do verbo “prefere”.",
+    "e": "O sujeito de “prefere” é “você”."
+   },
+   {
+    "id": "d",
+    "t": "adjunto adnominal de “embrulho”.",
+    "e": "O adjunto adnominal de “embrulho” é “seu”."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “Ei, amigos, vamos comemorar meu aniversário?”, a palavra “Ei”:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "é uma interjeição que enfatiza o vocativo “amigos”.",
+    "e": "Correto: o vocativo pode vir precedido de interjeição para dar ênfase (pp. 105 e 109).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "é o vocativo da frase.",
+    "e": "O vocativo é “amigos”; “Ei” é a interjeição que o reforça."
+   },
+   {
+    "id": "c",
+    "t": "é o sujeito de “vamos”.",
+    "e": "O sujeito de “vamos” é “nós” (desinencial)."
+   },
+   {
+    "id": "d",
+    "t": "é um aposto de “amigos”.",
+    "e": "“Ei” não explica “amigos”."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre o VOCATIVO:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "O vocativo não pertence ao sujeito nem ao predicado.",
+    "e": "Correta (p. 104).",
+    "ok": true
+   },
+   {
+    "n": "II",
+    "t": "O vocativo pode aparecer no começo, no meio ou no fim da oração.",
+    "e": "Correta (p. 105).",
+    "ok": true
+   },
+   {
+    "n": "III",
+    "t": "Em “Lucas e Rogério estão escalados, treinador?”, “Lucas e Rogério” é o vocativo.",
+    "e": "Errada: “Lucas e Rogério” é o sujeito; o vocativo é “treinador”."
+   },
+   {
+    "n": "IV",
+    "t": "A palavra “vocativo” vem do latim “vocare”, que significa “chamar”, “invocar”.",
+    "e": "Correta (p. 105).",
+    "ok": true
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas I, II e IV.",
+    "e": "I, II e IV estão corretas.",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Apenas I e II.",
+    "e": "A IV também está correta."
+   },
+   {
+    "id": "c",
+    "t": "I, II, III e IV.",
+    "e": "A III está errada."
+   },
+   {
+    "id": "d",
+    "t": "Apenas II e III.",
+    "e": "A III está errada e a I e a IV estão corretas."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "No poema “Seu lobo”, de Sérgio Capparelli — “Seu lobo, por que esses olhos tão grandes? / Pra te ver, Chapeuzinho.” —, os termos “Seu lobo” e “Chapeuzinho” são:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "vocativos, que mostram com quem cada personagem fala.",
+    "e": "Correto: os dois são chamados, separados por vírgula (questão invertida da p. 107).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "apostos, que explicam quem são os personagens.",
+    "e": "Eles não explicam outro termo: chamam o interlocutor."
+   },
+   {
+    "id": "c",
+    "t": "sujeitos das orações.",
+    "e": "Ninguém fala sobre eles; fala-se com eles."
+   },
+   {
+    "id": "d",
+    "t": "adjuntos adnominais.",
+    "e": "Não caracterizam nenhum substantivo."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "“Se está insatisfeito com o trabalho, por que não o fez você mesmo, ___ essa?!” A palavra que completa a frase e sua classe são:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "ora — interjeição.",
+    "e": "Correto: “ora” indica impaciência/espanto (atividade da p. 123).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "hora — substantivo.",
+    "e": "Não se fala de tempo nem de momento."
+   },
+   {
+    "id": "c",
+    "t": "ora — conjunção alternativa.",
+    "e": "A conjunção aparece repetida (ora… ora); aqui é interjeição."
+   },
+   {
+    "id": "d",
+    "t": "hora — interjeição.",
+    "e": "“Hora” é substantivo, nunca interjeição."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “Puxa! Nem percebi a hora passar.”, a palavra “hora” é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "substantivo feminino que nomeia um segmento de tempo.",
+    "e": "Correto (p. 122).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "interjeição de impaciência.",
+    "e": "A interjeição é “ora” (sem H)."
+   },
+   {
+    "id": "c",
+    "t": "conjunção alternativa.",
+    "e": "A conjunção alternativa é “ora… ora”."
+   },
+   {
+    "id": "d",
+    "t": "advérbio de tempo.",
+    "e": "O livro classifica “hora” como substantivo."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "“Quantas peças ___ essa máquina produz?” A expressão que completa corretamente a frase é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "por hora",
+    "e": "Correto: “por hora” = em um intervalo de 60 minutos (p. 123).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "por ora",
+    "e": "“Por ora” significa “por enquanto”, o que não combina com a produção da máquina."
+   },
+   {
+    "id": "c",
+    "t": "ora",
+    "e": "Sozinha, a interjeição “ora” não completa o sentido."
+   },
+   {
+    "id": "d",
+    "t": "ora… ora",
+    "e": "“Ora… ora” indica alternância de fatos."
+   }
+  ]
+ },
+ {
+  "tipo": "som",
+  "p": "Sobre o USO DE “ORA” E “HORA”, some os números das afirmativas CORRETAS:",
+  "itens": [
+   {
+    "v": 1,
+    "t": "“Ora” e “hora” têm a mesma pronúncia, mas sentido e grafia diferentes.",
+    "e": "Correta (p. 122).",
+    "ok": true
+   },
+   {
+    "v": 2,
+    "t": "“Ora” pode ser interjeição e indicar impaciência, espanto ou dúvida.",
+    "e": "Correta (p. 122).",
+    "ok": true
+   },
+   {
+    "v": 4,
+    "t": "“Hora” pode ser conjunção alternativa repetida: “hora… hora”.",
+    "e": "Errada: a conjunção é “ora… ora”, sem H."
+   },
+   {
+    "v": 8,
+    "t": "“Por ora” significa “em um intervalo de 60 minutos”.",
+    "e": "Errada: “por ora” = por enquanto; “por hora” = 60 minutos."
+   },
+   {
+    "v": 16,
+    "t": "“Ora… ora” e “ou… ou” atuam como conjunções alternativas, mas podem dar sentidos diferentes à frase.",
+    "e": "Correta (atividade da p. 123).",
+    "ok": true
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “O palácio, local onde se realizou o casamento, ficava debaixo das águas”, o aposto se refere a:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“palácio”.",
+    "e": "Correto: “local onde se realizou o casamento” explica o que era o palácio (atividade da p. 126).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "“casamento”.",
+    "e": "“Casamento” faz parte do próprio aposto."
+   },
+   {
+    "id": "c",
+    "t": "“águas”.",
+    "e": "O aposto está logo depois de “palácio”, explicando-o."
+   },
+   {
+    "id": "d",
+    "t": "“local”.",
+    "e": "“Local” é o núcleo do aposto, não o termo explicado."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "No trecho do conto “O mais: padre, sacristão, testemunhas, convidados, lacaios, eram sapas e rãs que coaxavam desagradavelmente”, o aposto é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“padre, sacristão, testemunhas, convidados, lacaios”.",
+    "e": "Correto: depois dos dois-pontos, a lista desenvolve “O mais” — aposto de enumeração (atividade da p. 127).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "“O mais”.",
+    "e": "“O mais” é o termo explicado; o aposto é a lista que vem depois."
+   },
+   {
+    "id": "c",
+    "t": "“sapas e rãs”.",
+    "e": "“Sapas e rãs” fazem parte do predicado (eram sapas e rãs)."
+   },
+   {
+    "id": "d",
+    "t": "“que coaxavam desagradavelmente”.",
+    "e": "Esse trecho caracteriza “sapas e rãs”; não é o aposto."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em “Era essa minha esperança: um aplicativo mais eficaz.”, o aposto transmite uma:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "explicação.",
+    "e": "Correto: “um aplicativo mais eficaz” esclarece qual era a esperança (atividade da p. 128).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "recapitulação.",
+    "e": "Recapitular é resumir termos citados antes (ex.: “tudo”, “todas as características…”)."
+   },
+   {
+    "id": "c",
+    "t": "especificação.",
+    "e": "O especificativo não tem pontuação (ex.: “Minha irmã Ane”)."
+   },
+   {
+    "id": "d",
+    "t": "chamada ao interlocutor.",
+    "e": "Chamar o interlocutor é papel do vocativo."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em qual frase o aposto aparece ANTES do termo a que se refere?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Textos escritos em linguagem universal, os contos maravilhosos não têm fronteiras.",
+    "e": "Correto: o aposto vem primeiro e depois o termo “os contos maravilhosos” (atividade da p. 130).",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "Os contos maravilhosos, textos escritos em linguagem universal, não têm fronteiras.",
+    "e": "Aqui o aposto vem depois do termo."
+   },
+   {
+    "id": "c",
+    "t": "Os contos dos irmãos Grimm, pesquisadores alemães, vêm da tradição oral.",
+    "e": "O aposto “pesquisadores alemães” vem depois de “irmãos Grimm”."
+   },
+   {
+    "id": "d",
+    "t": "Já os de Andersen, escritor dinamarquês, foram criados por ele.",
+    "e": "O aposto “escritor dinamarquês” vem depois de “Andersen”."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre o APOSTO:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "O aposto especificativo não é marcado por nenhuma pontuação.",
+    "e": "Correta (p. 126).",
+    "ok": true
+   },
+   {
+    "n": "II",
+    "t": "Em “Ele tinha todas as características de um príncipe: beleza, serenidade e honradez”, o aposto é de recapitulação.",
+    "e": "Errada: a lista vem depois e desenvolve o termo — é enumeração."
+   },
+   {
+    "n": "III",
+    "t": "Expressões como “isto é”, “a saber” e “por exemplo” podem aparecer antes do aposto.",
+    "e": "Correta (atividade da p. 130).",
+    "ok": true
+   },
+   {
+    "n": "IV",
+    "t": "O aposto pode se referir ao sujeito, ao objeto direto, ao objeto indireto, ao predicativo do sujeito e ao adjunto adverbial.",
+    "e": "Correta (p. 126).",
+    "ok": true
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas I, III e IV.",
+    "e": "I, III e IV estão corretas.",
+    "ok": true
+   },
+   {
+    "id": "b",
+    "t": "I, II, III e IV.",
+    "e": "A II está errada."
+   },
+   {
+    "id": "c",
+    "t": "Apenas I e II.",
+    "e": "A II está errada e a III e a IV estão corretas."
+   },
+   {
+    "id": "d",
+    "t": "Apenas II e III.",
+    "e": "A II está errada."
+   }
+  ]
+ },
+ {
+  "tipo": "dis",
+  "p": "DISCURSIVA — Leia as duas frases do livro: I. “Princesa, como você está linda!” II. “A princesa, vítima de um feitiço, vivia como sapa.” Nas duas aparece uma vírgula perto da palavra “princesa”. Explique a função do termo isolado por vírgula em cada frase (I: “Princesa”; II: “vítima de um feitiço”) e diga a diferença entre os dois termos.",
+  "modelo": "<b>Resposta-modelo (para os pais corrigirem):</b> em I, “Princesa” é <b>vocativo</b>: é a pessoa com quem se fala, chamada diretamente; não pertence ao sujeito nem ao predicado (o sujeito de “está” é “você”). Em II, “vítima de um feitiço” é <b>aposto</b>: é uma informação que explica quem era “a princesa”, que é o sujeito da oração. Diferença: o vocativo CHAMA o interlocutor; o aposto EXPLICA (esclarece) um termo da oração. Os dois podem ser retirados sem estragar a estrutura da frase.<br><b>Critérios:</b> (1) disse que em I é vocativo (chamado); (2) disse que em II é aposto (explicação) ligado a “a princesa”; (3) explicou a diferença entre chamar e explicar."
+ }
+]
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) — correta guardada pelo id ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(1004);
+Q.forEach(function(q){ if(q.alts){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; } if(q.tipo==='som'){ q.soma=q.itens.filter(function(x){return x.ok;}).reduce(function(a,x){return a+x.v;},0); } });
+var OBJ=Q.filter(function(q){return q.tipo!=='dis';}).length;
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_simulado_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'SIM-'+xx+'-'+yy; }
+function respondida(i){ var q=Q[i], r=estado.resp[i]; if(r===undefined||r===null||r==='') return false; if(q.tipo==='dis') return String(r).trim().length>=3; return true; }
+function acertou(i){ var q=Q[i], r=estado.resp[i]; if(q.tipo==='som') return parseInt(r,10)===q.soma; if(q.tipo==='dis') return null; var a=q.alts.filter(function(x){return x.id===r;})[0]; return !!(a&&a.ok); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+function render(){
+  var c=document.getElementById('questoes'); var h=''; var G=estado.gabarito;
+  Q.forEach(function(q,i){
+    var tipoTxt={mc:'Múltipla escolha',som:'Somatório',rom:'Números romanos',dis:'Discursiva'}[q.tipo];
+    h+='<div class="q" id="q'+i+'"><span class="tipo '+q.tipo+'">'+tipoTxt+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    if(q.tipo==='som'||q.tipo==='rom'){
+      q.itens.forEach(function(it){ var lab=q.tipo==='som'? ('('+(it.v<10?'0':'')+it.v+') ') : (it.n+'. '); var cls='afirm'+(G?(it.ok?' ok':' no'):''); h+='<div class="'+cls+'">'+lab+it.t+(G?'<div class="exp show">'+(it.ok?'✅ ':'❌ ')+it.e+'</div>':'')+'</div>'; });
+    }
+    if(q.tipo==='som'){
+      var r=estado.resp[i]; var ok=G?acertou(i):null;
+      h+='<div class="soma" style="margin-top:10px">Soma: <input type="number" min="0" max="31" id="som'+i+'" value="'+(r!==undefined?esc(r):'')+'" '+(estado.enviado?'disabled':'')+' oninput="marcar('+i+',this.value)"><span class="lab">'+(G?(ok?'✅ Correto: '+q.soma:'❌ Você somou '+esc(r)+'; o certo é '+q.soma):'')+'</span></div>';
+    } else if(q.tipo==='dis'){
+      h+='<textarea id="dis'+i+'" '+(estado.enviado?'disabled':'')+' oninput="marcar('+i+',this.value)" placeholder="Escreva aqui com as suas palavras…">'+esc(estado.resp[i]||'')+'</textarea>';
+      h+='<div class="modelo'+(G?' show':'')+'">'+q.modelo+'</div>';
+    } else {
+      q.ordem.forEach(function(a,k){
+        var letra='abcd'[k]; var sel=estado.resp[i]===a.id; var cls='alt'+(sel?' sel':'');
+        if(G){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+        h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t+(G?'<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>':'')+'</label>';
+      });
+    }
+    h+='</div>';
+  });
+  c.innerHTML=h; atualizarBarra(); if(estado.enviado) mostrarEnviado();
+}
+function marcar(i,v){ if(estado.enviado) return; estado.resp[i]=v; salvar(); var q=document.getElementById('q'+i); if(Q[i].tipo==='mc'||Q[i].tipo==='rom'){ var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===v); } } atualizarBarra(); }
+function atualizarBarra(){ var n=0; Q.forEach(function(q,i){ if(respondida(i)) n++; }); document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar simulado ('+n+' de '+Q.length+' respondidas)':'📨 Enviar simulado'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ if(acertou(i)===true) ac++; });
+  estado.acertos=ac; estado.objetivas=OBJ; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Simulado enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado (a discursiva é corrigida com a resposta-modelo).';
+  document.getElementById('gab').classList.add('show'); document.getElementById('fim').style.display='block';
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+OBJ+' questões objetivas (+ 1 discursiva para corrigir).</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='simulado_confeitaria-dos-nomes.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Simulado? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Simulado já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); }
+</script>
+</body>
+</html>

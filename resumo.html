@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Confeitaria dos Nomes · Português 7º</title>
+<style>
+  :root{--palco:#1a1013;--palco2:#2a1a1f;--aco:#4a2e37;--aco2:#6b4552;--ambar:#ffb84d;--ciano:#ff8fb8;--terra:#b99cff;--verde:#5fe3c0;--vermelho:#ef5b5b;--texto:#fbeee6;--cinza:#c9aeb2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#3b1e27,#1a1013 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#3a2410,#2e1820 50%,#3a1530);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ambar)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#ffe3ef;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#f3e2e8;font-size:.92rem}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--ambar);color:#2a1700;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ambar);font-size:1.1rem;margin-bottom:8px}
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--ambar);color:#2a1700;font-weight:bold}
+  .sec .pill.c17{background:var(--ciano);color:#3a0d20}
+  .sec .pill.mam{background:var(--terra);color:#1d0f3a}
+  .sec .pill.all{background:var(--verde);color:#04231a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .card{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--ambar)}
+  .card.c17{border-top-color:var(--ciano)}
+  .card.mam{border-top-color:var(--terra)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--ambar)}
+  .card.c17 b{color:var(--ciano)}
+  .card.mam b{color:var(--terra)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .peg b{color:#ffb3b3}
+  .narrador{background:#2a1a30;border-left:4px solid var(--ciano);border-radius:0 12px 12px 0;padding:10px 14px;margin:12px 0;font-size:.92rem;font-style:italic;color:#f1dcf5}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:190px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#40252e,#2a1a1f);border:1px solid var(--aco2);font-weight:bold}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#0e2b1f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#3a222a}
+  .tabela th.c16{color:var(--ambar)} .tabela th.c17{color:var(--ciano)}
+  .scroll{overflow-x:auto}
+  .fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:8px}
+  .fluxo .et{flex:1;min-width:120px;background:#221519;border:1px solid var(--aco2);border-left:4px solid var(--ciano);border-radius:0 10px 10px 0;padding:10px;font-size:.86rem}
+  .fluxo .et b{color:var(--ciano)}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--ambar)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#3a262c;color:#9a7f86;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:var(--ciano);color:#3a0d20;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#3a262c;color:#9a7f86;pointer-events:none}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ambar);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a{display:inline-block;background:var(--ambar);color:#2a1700;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:620px){.duas{grid-template-columns:1fr}}
+  .lado{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:14px}
+  .lado h3{font-size:1rem;margin-bottom:6px}
+  .lado.antes{border-top:4px solid var(--verde)} .lado.depois{border-top:4px solid var(--vermelho)}
+  .linha{position:relative;margin:14px 0 6px 10px;border-left:3px solid var(--ciano);padding-left:18px}
+  .linha .mk{position:relative;margin-bottom:12px;font-size:.92rem}
+  .linha .mk::before{content:"";position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--ciano);box-shadow:0 0 0 3px #1a1013}
+  .linha .mk b.ano{display:inline-block;min-width:92px;color:var(--ciano)}
+  .linha.af{border-left-color:var(--ambar)} .linha.af .mk::before{background:var(--ambar)} .linha.af .mk b.ano{color:var(--ambar)}
+
+
+  h3.sub{font-size:1.05rem;margin:18px 0 10px;color:#fff}
+  .c-am{color:var(--ambar)} .c-ro{color:var(--ciano)} .c-li{color:var(--terra)}
+  .tabela th.c22{color:var(--terra)} .tabela th.c16{color:var(--ambar)} .tabela th.c17{color:var(--ciano)}
+  .lado.lil{border-top:4px solid var(--terra)}
+  .lado ul{margin-left:18px} .lado li{margin-bottom:5px;font-size:.93rem}
+  .flip .back b{color:var(--ambar)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Confeitaria dos Nomes · Português 7º ano · CCF</div>
+  <h1>🗺️ Resumo — O Cardápio da Confeitaria</h1>
+  <p>Tudo o que cai na Avaliação Mensal 3, em cartões, tabelas, cartas para virar e post-its · Callis Língua Portuguesa 7 – Livro 2 (Cap. 20, 21 e 22)</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>📜 O cardápio da casa</h2>
+    <p>Na nossa confeitaria, o <b>substantivo é o doce</b>. Os <b style="color:var(--ambar)">adjuntos adnominais</b> são as coberturas e confeitos, o <b style="color:var(--terra)">aposto</b> é a etiqueta que explica o doce, o <b style="color:var(--ciano)">vocativo</b> é o chamado no balcão, <b style="color:var(--ciano)">vem/vêm</b> são as encomendas e <b style="color:var(--terra)">ora/hora</b> é o relógio do forno. Use este cardápio para fechar as dúvidas que o Quiz mostrou. Leia até o fim: lá embaixo está o botão <b>"Li o resumo até o fim"</b>, que destrava o <b>📝 Simulado</b>.</p>
+  </div>
+  <div class="painel"><span id="salvo">📜 Rolagem máxima: 0%</span><span><button class="mini" onclick="exportar()">📥 Exportar</button></span></div>
+
+  <div class="narrador">🧁 Recado do confeiteiro: três termos “se penduram” nos nomes e confundem na prova — o <b>adjunto adnominal</b> (caracteriza, sem vírgula), o <b>aposto</b> (explica, quase sempre entre vírgulas, travessões ou dois-pontos) e o <b>vocativo</b> (chama alguém, sempre entre vírgulas). O quadro comparativo do fim junta os três.</div>
+
+  <!-- ===================== CAPÍTULO 20 ===================== -->
+  <div class="sec"><span class="pill">Capítulo 20 · pp. 82–87</span><h2>🍰 Adjunto adnominal: a cobertura do substantivo</h2></div>
+  <div class="grid">
+    <div class="card"><h3>📌 O que é</h3><ul>
+      <li>Termo que <b>especifica ou delimita</b> o significado de um <b>substantivo</b>.</li>
+      <li>Pode estar ligado a <b>qualquer termo</b> da oração: no sujeito ou no predicado.</li>
+      <li>É <b>termo acessório</b>: não interfere na estrutura, mas <b>pode alterar o sentido</b>.</li>
+      <li>“Telhados <b>verdes</b>”: sem o adjunto, a notícia perderia o sentido.</li></ul></div>
+    <div class="card"><h3>🔎 Como achar</h3><ul>
+      <li>1º: ache o <b>núcleo</b> (o substantivo principal).</li>
+      <li>2º: veja o que “sobra” em volta dele caracterizando-o.</li>
+      <li>“<b>A grande</b> metrópole precisa de soluções sustentáveis” → núcleo <b>metrópole</b>; adjuntos: <b>a</b>, <b>grande</b>.</li>
+      <li>“A cidade implementa práticas <b>sustentáveis</b> diariamente” → “sustentáveis” caracteriza <b>práticas</b>; “diariamente” é adjunto <b>adverbial</b> (verbo).</li></ul></div>
+  </div>
+
+  <h3 class="sub">🧁 Os seis confeitos (clique na carta para virar)</h3>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Adjetivo<small>toque para ver o exemplo</small></div><div class="face back">A cidade receberá equipamentos de vigilância <b>eletrônica</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Locução adjetiva<small>toque para ver o exemplo</small></div><div class="face back">Os alunos receberão bolsas <b>de estudo</b> para línguas estrangeiras.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Artigo<small>toque para ver o exemplo</small></div><div class="face back"><b>A</b> cidade superou as expectativas de todos.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Pronome adjetivo<small>toque para ver o exemplo</small></div><div class="face back"><b>Essa</b> praça está sendo reformada desde quando?</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Numeral<small>toque para ver o exemplo</small></div><div class="face back"><b>Três</b> quilômetros separam uma praça da outra.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Oração inteira<small>toque para ver o exemplo</small></div><div class="face back">As cidades grandes <b>que não investem em sustentabilidade</b> comprometem a qualidade de vida dos moradores.</div></div></div>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> artigo (<b>a</b>, <b>o</b>, <b>uma</b>) e pronome (<b>essa</b>, <b>aquela</b>, <b>nossa</b>) também são adjuntos adnominais! Muita gente procura só os adjetivos.</div>
+
+  <h3 class="sub">⚖️ Mesma palavra, função diferente</h3>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th>Função</th><th>Como reconhecer (livro)</th><th>Exemplo do livro</th></tr></thead>
+    <tbody>
+      <tr><td><b class="c-am">Adjunto adnominal</b></td><td>Fica <b>junto do substantivo</b>; característica <b>própria e permanente</b>; pode sair sem estragar a estrutura.</td><td>Uma cidade <b>sustentável</b> traz qualidade de vida… / O prefeito iniciou a obra <b>importante</b>.</td></tr>
+      <tr><td><b class="c-ro">Predicativo do sujeito</b></td><td>Fica <b>no predicado</b> (ex.: depois de “é”, “continua”); sem ele, a oração fica incompleta.</td><td>Aquela cidade é <b>sustentável</b>. / Seu projeto continua <b>inviável</b>.</td></tr>
+      <tr><td><b class="c-li">Predicativo do objeto</b></td><td>Característica <b>temporária</b> do objeto ou que <b>depende do julgamento</b> do sujeito.</td><td>O prefeito considerou a obra <b>importante</b>. / A turma encontrou a praça <b>suja</b>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="sub">🎯 Substantivo abstrato: quem faz × quem recebe</h3>
+  <div class="duas">
+    <div class="lado antes"><h3>👩‍🍳 Adjunto adnominal = AGENTE</h3><p>Indica <b>quem pratica</b> a ação escondida no substantivo.</p><ul><li>A explicação <b>do morador</b> (o morador explica)</li><li>A admiração <b>da cidade</b> (a cidade admira)</li><li>O apoio <b>dos moradores</b> (os moradores apoiam)</li></ul></div>
+    <div class="lado depois"><h3>🎁 Complemento nominal = ALVO</h3><p>Indica <b>quem recebe</b> a ação escondida no substantivo.</p><ul><li>A explicação <b>ao morador</b> (explicam ao morador)</li><li>A admiração <b>pela cidade</b> (admiram a cidade)</li><li>O apoio <b>aos moradores</b> (apoiam os moradores)</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> em “O bloqueio <b>da avenida</b> pelas obras prejudicou o trânsito”, “da avenida” é <b>complemento nominal</b> (a avenida é bloqueada) e “pelas obras” é <b>adjunto adnominal</b> (as obras bloqueiam).</div>
+
+  <!-- ===================== CAPÍTULO 21 ===================== -->
+  <div class="sec"><span class="pill c17">Capítulo 21 · pp. 100–101</span><h2>📦 Vem ou vêm? As encomendas</h2></div>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th class="c17">Singular (ele / ela)</th><th class="c17">Plural (eles / elas)</th><th>Regra do livro</th></tr></thead>
+    <tbody>
+      <tr><td>vem</td><td><b>vêm</b></td><td rowspan="1">Presente do indicativo: só o <b>acento</b> diferencia a 3ª pessoa do singular da do plural.</td></tr>
+      <tr><td>intervém · provém · advém · sobrevém</td><td><b>intervêm · provêm · advêm · sobrevêm</b></td><td>Derivados de “vir”: singular com acento <b>agudo</b> (´), plural com acento <b>circunflexo</b> (^).</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card c17"><h3>🔍 Olhe o sujeito!</h3><ul>
+      <li>“O conto maravilhoso <b>vem</b> de países orientais” → um conto.</li>
+      <li>“Os contos de fadas, em sua maioria, <b>vêm</b> da cultura celta” → vários contos.</li>
+      <li>“<b>Vêm</b> com encarte os seus guias de leitura?” → o sujeito pode vir depois do verbo.</li></ul></div>
+    <div class="card c17"><h3>🍀 Muda o sentido</h3><ul>
+      <li>“…contadora de histórias que <b>vem</b> da Irlanda” → quem vem é a <b>contadora</b>.</li>
+      <li>“…contadora de histórias que <b>vêm</b> da Irlanda” → o que vem são as <b>histórias</b>.</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> “Puxa! Seus sapatos <b>vem</b> com rodinha?” está <b>errado</b> — “seus sapatos” é plural, então é <b>vêm</b>.</div>
+
+  <div class="sec"><span class="pill c17">Capítulo 21 · pp. 104–109</span><h2>🔔 Vocativo: o chamado no balcão</h2></div>
+  <div class="grid">
+    <div class="card c17"><h3>📌 O que é</h3><ul>
+      <li>Serve para <b>invocar, chamar e dirigir-se</b> a uma pessoa ou a um <b>ser personificado</b>.</li>
+      <li>Vem do latim <i>vocare</i> = “chamar”, “invocar” (mesma raiz de <b>vocação</b>).</li>
+      <li><b>Não pertence ao sujeito nem ao predicado</b>: é um termo <b>isolado</b>.</li>
+      <li>Sem ele, a oração continua completa: “[Vovó,] vamos caminhar por essa praça?”</li></ul></div>
+    <div class="card c17"><h3>✏️ Pontuação e posição</h3><ul>
+      <li><b>Sempre separado por vírgulas.</b></li>
+      <li>Começo: “<b>Vovó</b>, vamos caminhar por essa praça?”</li>
+      <li>Meio: “Vamos, <b>vovó</b>, caminhar por essa praça?”</li>
+      <li>Fim: “Vamos caminhar por essa praça, <b>vovó</b>?”</li></ul></div>
+    <div class="card c17"><h3>📣 Ênfase</h3><ul>
+      <li><b>Repetição</b>: “<b>Marido, marido</b>… como poderemos retribuir?”</li>
+      <li><b>Interjeição antes</b>: “<b>Ei</b>, querida, vamos descobrir…?”</li>
+      <li>Não é totalmente dispensável: marca a <b>interação</b> do diálogo (piada, contos de assombração, crônica narrativa).</li></ul></div>
+  </div>
+
+  <h3 class="sub">🔔 Sujeito ou vocativo? (clique para conferir)</h3>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“Paulo vai se encontrar com os amigos na lanchonete hoje?”<small>Paulo é…?</small></div><div class="face back"><b>Sujeito</b> — sem vírgula, fala-se SOBRE Paulo.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“Paulo, vai se encontrar com os amigos na lanchonete hoje?”<small>Paulo é…?</small></div><div class="face back"><b>Vocativo</b> — com vírgula, fala-se COM Paulo.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“Lucas e Rogério estão escalados, treinador?”<small>Quem é o quê?</small></div><div class="face back">“Lucas e Rogério” = <b>sujeito</b>; “treinador” = <b>vocativo</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“Espelho, espelho meu, existe alguém mais bela do que eu?”<small>Quem é chamado?</small></div><div class="face back">O <b>espelho</b> — um ser personificado. Vocativo repetido para dar ênfase.</div></div></div>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> no poema “Seu lobo”, de Sérgio Capparelli — “<b>Seu lobo</b>, por que esses olhos tão grandes? / Pra te ver, <b>Chapeuzinho</b>.” —, os vocativos mostram quem fala com quem.</div>
+
+  <!-- ===================== CAPÍTULO 22 ===================== -->
+  <div class="sec"><span class="pill mam">Capítulo 22 · pp. 122–123</span><h2>⏰ Ora ou hora? O relógio do forno</h2></div>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th class="c22">Palavra</th><th>Classe</th><th>Sentido</th><th>Exemplo do livro</th></tr></thead>
+    <tbody>
+      <tr><td><b class="c-li">ora</b></td><td>interjeição</td><td>impaciência, espanto ou dúvida</td><td><b>Ora</b>, lá vem você de novo com essa história!</td></tr>
+      <tr><td><b class="c-li">ora… ora</b></td><td>conjunção alternativa</td><td>alternância de fatos (aparece repetida)</td><td><b>Ora</b> você diz a verdade, <b>ora</b> inventa mil fábulas!</td></tr>
+      <tr><td><b class="c-li">hora</b></td><td>substantivo feminino</td><td>segmento de tempo</td><td>Puxa! Nem percebi a <b>hora</b> passar.</td></tr>
+      <tr><td><b class="c-li">hora</b></td><td>substantivo feminino</td><td>momento, circunstância</td><td>Tudo tem uma <b>hora</b> certa para começar.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="duas" style="margin-top:12px">
+    <div class="lado lil"><h3>⏳ por ora × por hora</h3><ul><li><b>por ora</b> = por enquanto → “Não há mais nada a fazer. <b>Por ora</b>, basta esperar.”</li><li><b>por hora</b> = em um intervalo de 60 minutos → “Quantas peças <b>por hora</b> essa máquina produz?”</li></ul></div>
+    <div class="lado lil"><h3>🔀 ora… ora × ou… ou</h3><ul><li>As duas são <b>conjunções alternativas</b>, mas o sentido muda:</li><li>“<b>Ora</b> lê o livro, <b>ora</b> conta a história de memória.” → alterna (às vezes um, às vezes outro).</li><li>“<b>Ou</b> lê o livro, <b>ou</b> conta a história de memória.” → uma coisa ou outra.</li></ul></div>
+  </div>
+  <div class="postit">📌 <b>Macete:</b> <b>H</b>ora tem <b>H</b> de “<b>H</b>orário” (tempo, momento). Sem H, “ora” é a palavra do resmungo (“Ora, …!”) ou da alternância (“ora… ora”).</div>
+
+  <div class="sec"><span class="pill mam">Capítulo 22 · pp. 124–131</span><h2>🏷️ Aposto: a etiqueta que explica o doce</h2></div>
+  <div class="grid">
+    <div class="card mam"><h3>📌 O que é</h3><ul>
+      <li>Anexa à oração uma informação que <b>esclarece, desenvolve ou resume</b> a palavra a que se refere.</li>
+      <li>Se excluído, <b>não altera a estrutura</b>: “Os súditos, <b>todos fidalgos</b>, formavam o cortejo da princesa.” → “Os súditos formavam o cortejo da princesa.”</li>
+      <li>Mas <b>não é indiferente ao sentido</b>: “Os contos dos irmãos Grimm, <b>pesquisadores alemães</b>…”</li></ul></div>
+    <div class="card mam"><h3>✏️ Pontuação</h3><ul>
+      <li><b>Vírgulas</b>: Os convidados, <b>parentes e conhecidos</b>, ficaram chocados…</li>
+      <li><b>Travessões</b>: A história – <b>exemplo de um conto clássico</b> – é recontada…</li>
+      <li><b>Dois-pontos</b>: A sapa foi seguida pelo seu cortejo: <b>sapos, sapinhos e sapões de todos os estilos</b>.</li>
+      <li><b>Nenhuma</b>: só no aposto <b>especificativo</b>.</li></ul></div>
+    <div class="card mam"><h3>🎯 A que termo se refere</h3><ul>
+      <li><b>sujeito</b>: A princesa, <i>vítima de um feitiço</i>, vivia como sapa.</li>
+      <li><b>objeto direto</b>: O príncipe ouviu a música, <i>uma romanza</i>.</li>
+      <li><b>objeto indireto</b>: Todos riram de Reinaldo, <i>o príncipe-sapo</i>.</li>
+      <li><b>predicativo do sujeito</b>: Este é Reinaldo, <i>o protagonista do conto</i>.</li>
+      <li><b>adjunto adverbial</b>: Naquela manhã, <i>especificamente ao meio-dia</i>, houve uma transformação.</li></ul></div>
+  </div>
+
+  <h3 class="sub">🍬 Os quatro sabores do aposto (clique para virar)</h3>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Enumeração<small>desenvolve um termo citado antes, listando</small></div><div class="face back">Ele tinha todas as características de um príncipe: <b>beleza, serenidade e honradez</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Recapitulação<small>resume termos citados antes</small></div><div class="face back">Beleza, serenidade e honradez, <b>todas as características de um príncipe</b> se encontravam nele.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Explicação<small>esclarece quem/o que é o termo</small></div><div class="face back">José de Alencar, <b>romancista brasileiro</b>, nasceu no Ceará.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Especificação<small>individualiza um substantivo genérico — SEM pontuação</small></div><div class="face back">O escritor <b>Hans Christian Andersen</b> escreveu seus próprios contos.</div></div></div>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card mam"><h3>🔁 Pode vir antes</h3><ul><li>“Os contos maravilhosos, <b>textos escritos em linguagem universal</b>, não têm fronteiras.” → “<b>Textos escritos em linguagem universal</b>, os contos maravilhosos não têm fronteiras.”</li></ul></div>
+    <div class="card mam"><h3>💬 Expressões explicativas</h3><ul><li>Podem aparecer antes do aposto: <b>a saber, isto é, quais sejam, tais como, por exemplo</b>.</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> enumeração × recapitulação — na <b>enumeração</b> a lista vem <b>depois</b> (geralmente após dois-pontos); na <b>recapitulação</b> a lista vem <b>antes</b> e o aposto a resume (“tudo”, “todas as características…”).</div>
+
+  <!-- ===================== QUADRO FINAL ===================== -->
+  <div class="sec"><span class="pill all">Os três juntos</span><h2>🧾 Adjunto adnominal × aposto × vocativo</h2></div>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th></th><th class="c16">Adjunto adnominal</th><th class="c22">Aposto</th><th class="c17">Vocativo</th></tr></thead>
+    <tbody>
+      <tr><td><b>Faz o quê?</b></td><td>Especifica ou delimita um substantivo</td><td>Explica, especifica, recapitula ou enumera um termo</td><td>Chama, invoca, dirige-se a alguém</td></tr>
+      <tr><td><b>Pontuação</b></td><td>Sem vírgula, colado ao nome</td><td>Vírgulas, travessão ou dois-pontos (especificativo: nenhuma)</td><td>Sempre entre vírgulas</td></tr>
+      <tr><td><b>Faz parte da oração?</b></td><td>Sim, de um termo (sujeito, objeto…)</td><td>Refere-se a um termo da oração</td><td>Não pertence ao sujeito nem ao predicado</td></tr>
+      <tr><td><b>Pode sair?</b></td><td>Sim (termo acessório), mas o sentido muda</td><td>Sim, sem alterar a estrutura</td><td>Sim, sem prejuízo para a estrutura</td></tr>
+      <tr><td><b>Exemplo</b></td><td>Uma cidade <b>sustentável</b> traz…</td><td>José de Alencar, <b>romancista brasileiro</b>, nasceu no Ceará.</td><td>…podes partir de novo, <b>ó nômade formosa</b>!</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="sec"><span class="pill all">Glossário</span><h2>📖 Palavras do capítulo</h2></div>
+  <div class="gloss">
+    <div><b>Substantivo</b> — o “doce” da frase: o nome que pode receber adjuntos adnominais e apostos.</div>
+    <div><b>Núcleo</b> — a palavra principal de um termo (ex.: “metrópole” em “A grande metrópole”).</div>
+    <div><b>Termo acessório</b> — termo que não é necessário para a estrutura da oração, mas acrescenta sentido.</div>
+    <div><b>Locução adjetiva</b> — expressão que caracteriza o substantivo como um adjetivo (“bolsas <i>de estudo</i>”).</div>
+    <div><b>Pronome adjetivo</b> — pronome que acompanha o substantivo (“<i>Essa</i> praça”).</div>
+    <div><b>Predicativo do objeto</b> — característica temporária do objeto ou que depende do julgamento do sujeito.</div>
+    <div><b>Complemento nominal</b> — no substantivo abstrato, indica o alvo (quem recebe a ação).</div>
+    <div><b>Substantivo abstrato</b> — nome que traz uma ação “escondida” (explicação, admiração, apoio, bloqueio).</div>
+    <div><b>Presente do indicativo</b> — tempo e modo em que “ele vem / eles vêm”.</div>
+    <div><b>Ser personificado</b> — ser ou objeto tratado como pessoa (o espelho da rainha).</div>
+    <div><b>Interjeição</b> — palavra de emoção que pode enfatizar o vocativo (“Ei”, “ó”, “Ora”).</div>
+    <div><b>Sujeito desinencial</b> — sujeito que não está escrito, mas é indicado pelo verbo (“vamos” → nós).</div>
+    <div><b>Conjunção alternativa</b> — liga ideias que se alternam ou se excluem (ora… ora; ou… ou).</div>
+    <div><b>Aposto especificativo</b> — aposto sem pontuação que individualiza um substantivo genérico.</div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🍰🧁🔔 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='confeitaria_p7m3';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📜 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; if((estado.rolagemMax||0)<90) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare o Simulado valendo, como se fosse a prova.':'Trilha liberada pelos pais.'; b.disabled=!!estado.concluido||(estado.rolagemMax||0)<90; b.textContent=estado.concluido?'✅ Resumo concluído':'✅ Li o resumo até o fim'; a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_confeitaria-dos-nomes.json'; a.click(); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>
